@@ -1,0 +1,13 @@
+
+<nav role="navigation" class="navbar navbar-default">
+	<div class"navbar-brand">
+		
+		<ul class="nav navbar-nav">
+			<li><a href="/Stockist-T04/">Home</a></li>
+			<li class="active"><a href="/Stockist-T04/list-todos">Todos</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/Stockist-T04/logout">Logout</a></li>
+		</ul>
+	</div>
+</nav>
