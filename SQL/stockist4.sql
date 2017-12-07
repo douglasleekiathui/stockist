@@ -330,11 +330,13 @@ INSERT INTO `stockist4`.`products` (product_no,product_description,dimension,man
 
 
 INSERT INTO `stockist4`.`users` VALUES 
+('miki','miki','ADMIN'),
 ('admin','admin','ADMIN'),
 ('admin1','admin1','ADMIN'),
 ('mech1','mech1','MECHANIC'),
 ('mech2','mech2','MECHANIC'),
 ('mech3','mech3','MECHANIC'),
 ('mech4','mech4','MECHANIC');
+
 
 
