@@ -13,6 +13,7 @@
 <span>Dimensions</span>
 <span>Manufacturer</span>
 <span>Shelf Location</span>
+<span>Primary Supplier</span>
 </div>
 <c:forEach var="p" items="${productList}">
 <div>
@@ -21,6 +22,7 @@
 <span> <c:out value="${p.dimension}" /> </span>
 <span> <c:out value="${p.manufacturer}" /> </span>
 <span> <c:out value="${p.shelfLocation}" /> </span>
+<span> <c:out value="${p.primarySupplier.supplierName}" /> </span>
 </div>
 </c:forEach>
 

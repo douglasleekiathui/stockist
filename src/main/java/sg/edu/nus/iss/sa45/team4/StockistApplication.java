@@ -8,7 +8,10 @@ import javax.sql.DataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
@@ -40,12 +43,22 @@ public class StockistApplication {
 	private Environment env;
 
 	
-	
+	//property files
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
 	      return new PropertySourcesPlaceholderConfigurer();
 	}
 
+	
+	//jasper reports
+	 @Bean
+	    @Primary
+	    @ConfigurationProperties(prefix = "datasource")
+	    public DataSource primaryDataSource() {
+	        return DataSourceBuilder.create().build();
+	    }
+	 
+	 
 	@Bean
 	// view resolver configuration to internal resource
 	public ViewResolver viewResolver() {
