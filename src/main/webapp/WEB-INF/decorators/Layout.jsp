@@ -33,7 +33,14 @@
 	<!-- ======== Footer ======== -->
 				<div id="footer" align="center">
 				  <hr>
-					<small> &copy; ISS NUS SA45 2017 </small>
+					<small> &copy;Team4 Stockist &#169;
+            2017<br />
+            Contact
+            25 Heng Mui Keng Terrace, 119615
+            Singapore<br />
+            Infolink:+65-162093<br />
+            E-mail:  isstraining@nus.edu.sg
+         </small>
 				</div>
 </body>
 </html>
