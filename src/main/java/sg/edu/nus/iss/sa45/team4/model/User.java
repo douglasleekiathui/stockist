@@ -8,6 +8,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 public class User {
+	public User() {
+		super();
+		
+	}
+	public User(String user, String password, String userRole) {
+		super();
+		this.user = user;
+		this.password = password;
+		this.userRole = userRole;
+	}
 	@Id
 	private String user;
 	private String password;
@@ -31,6 +41,33 @@ public class User {
 	}
 	public void setUserRole(String user_role) {
 		this.userRole = user_role;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "User [user=" + user + ", password=" + password + ", userRole=" + userRole + "]";
 	}
 
 	
