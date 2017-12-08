@@ -2,6 +2,8 @@ package sg.edu.nus.iss.sa45.team4.services.impl;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -56,4 +58,18 @@ public class ProductServiceImpl implements ProductService{
 		ProductRepository.delete(Product);
 	}
 
+	/*
+     * Manual implementation of pagination, because spring's page is too troublesome
+     * Takes in pageNumber and sizePerPage, returns the subList
+     * also does custom sorting which follows ReorderProductComparator
+     */
+    @Transactional(readOnly=true)
+    public List<Product> getReorderProductByPage(String page, int sizePerPage){
+         List<Product> products = ProductRepository.findReorderProducts();
+         Collections.sort(products, new ReorderProductComparator());
+         int pageNo=Integer.parseInt(page);
+         int from = Math.max(0,pageNo*sizePerPage);
+         int to = Math.min(products.size(),(pageNo+1)*sizePerPage);
+         return products.subList(from,to);
+    }
 }

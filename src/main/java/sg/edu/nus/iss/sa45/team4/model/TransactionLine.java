@@ -1,8 +1,10 @@
 package sg.edu.nus.iss.sa45.team4.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,9 @@ public class TransactionLine {
 	private String productNo;
 	@Column(name="posted_qty")
 	private int postedQty;
+	
+	@ManyToOne
+	private Transaction transaction;
 	
 	public String getTransactionNo() {
 		return this.transactionLineId.getTransactionNo();
