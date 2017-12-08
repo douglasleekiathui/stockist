@@ -1,145 +1,84 @@
-/*
-this script creates 5 tables: products, suppliers, users, transactions, transactionlines
-products contains products details, quantities and recommended supplier which is linked to suppliers
-transactions is the header table for transactionlists, contains created_by which is username and created_for which can be used to store customer and supplier name
-transactionlists has 2 primary keys, transaction_no and line_no
-dummy data is put in users, suppliers and products
-transactions and transactionlists have NO data yet
-*/
-
 CREATE SCHEMA `stockist4` ;
 
-
 CREATE TABLE `stockist4`.`products` (
-  
 `product_no` VARCHAR(5) NOT NULL,
-  
 `product_description` VARCHAR(255) NULL,
-  
 `dimension` VARCHAR(255) NULL,
 `manufacturer` VARCHAR(16) NULL,
 `reorder_qty` INT NULL,
-  
 `min_qty` INT NULL, 
 `onhand_qty` VARCHAR(45) NULL,
-  
 `shelf_location` VARCHAR(16) NULL,
- 
 `primary_supplier` VARCHAR(5) NULL, 
 `price` DECIMAL(10,2) NULL, 
 PRIMARY KEY (`product_no`));
 
 
 CREATE TABLE `stockist4`.`transactionlines` (
-  
 `transaction_no` VARCHAR(5) NOT NULL,
-  
 `line_no` INT NOT NULL,
-  
 `product_no` VARCHAR(5) NULL,
-  
 `posted_qty` INT NULL,
-  
 PRIMARY KEY (`transaction_no`, `line_no`));
 
 
 CREATE TABLE `stockist4`.`transactions` (
-  
 `transaction_no` VARCHAR(5) NOT NULL,
-  
 `transaction_date` DATETIME NULL,
-  
 `transaction_type` VARCHAR(5) NULL,
- 
 `created_by` VARCHAR(16) NULL,
- 
 `created_for` VARCHAR(255) NULL, 
 PRIMARY KEY (`transaction_no`));
 
 
 CREATE TABLE `stockist4`.`users` (
-  
 `user` VARCHAR(16) NOT NULL,
-  
 `password` VARCHAR(255) NULL,
-  
 `user_role` VARCHAR(8) NULL,
-  
-PRIMARY KEY (`user`));
+  PRIMARY KEY (`user`));
 
 
 CREATE TABLE `stockist4`.`suppliers` (
-  
 `supplier_no` VARCHAR(5) NOT NULL,
-  
 `supplier_name` VARCHAR(255) NULL,
- 
 `supplier_contact` VARCHAR(255) NULL, 
 `supplier_email` VARCHAR(255) NULL,  
 PRIMARY KEY (`supplier_no`));
 
-
-ALTER TABLE `stockist4`.`transactionlines` 
-
-ADD CONSTRAINT `transactions_transactionlines`
-  
-FOREIGN KEY (`transaction_no`)
-  
-REFERENCES `stockist4`.`transactions` (`transaction_no`)
-  
-ON DELETE NO ACTION
-  
-ON UPDATE NO ACTION;
-
-
-ALTER TABLE `stockist4`.`transactionlines` 
-
-ADD INDEX `products_transactionlines_idx` (`product_no` ASC);
-
-ALTER TABLE `stockist4`.`transactionlines` 
-
-ADD CONSTRAINT `products_transactionlines`
-  
-FOREIGN KEY (`product_no`)
-  
-REFERENCES `stockist4`.`products` (`product_no`)
-  
-ON DELETE NO ACTION
-  
-ON UPDATE NO ACTION;
-
 ALTER TABLE `stockist4`.`transactions` 
-
 ADD INDEX `users_transactions_idx` (`created_by` ASC);
-
 ALTER TABLE `stockist4`.`transactions` 
-
 ADD CONSTRAINT `users_transactions`
-  
-FOREIGN KEY (`created_by`)
-  
-REFERENCES `stockist4`.`users` (`user`)
-  
-ON DELETE NO ACTION
-  
-ON UPDATE NO ACTION;
+FOREIGN KEY (`created_by`)  
+REFERENCES `stockist4`.`users` (`user`);
 
+ALTER TABLE `stockist4`.`transactionlines` 
+ADD CONSTRAINT `transactions_transactionlines`  
+FOREIGN KEY (`transaction_no`)  
+REFERENCES `stockist4`.`transactions` (`transaction_no`);
+
+ALTER TABLE `stockist4`.`transactionlines` 
+ADD INDEX `products_transactionlines_idx` (`product_no` ASC);
+ALTER TABLE `stockist4`.`transactionlines` 
+ADD CONSTRAINT `products_transactionlines`  
+FOREIGN KEY (`product_no`)  
+REFERENCES `stockist4`.`products` (`product_no`) ;
 
 ALTER TABLE `stockist4`.`products` 
-
 ADD INDEX `suppliers_products_idx` (`primary_supplier` ASC);
-
 ALTER TABLE `stockist4`.`products` 
+ADD CONSTRAINT `suppliers_products`  
+FOREIGN KEY (`primary_supplier`)  
+REFERENCES `stockist4`.`suppliers` (`supplier_no`);
 
-ADD CONSTRAINT `suppliers_products`
-  
-FOREIGN KEY (`primary_supplier`)
-  
-REFERENCES `stockist4`.`suppliers` (`supplier_no`)
-  
-ON DELETE NO ACTION
-  
-ON UPDATE NO ACTION;
+INSERT INTO `stockist4`.`users` VALUES 
+('admin','admin','ADMIN'),
+('admin1','admin1','ADMIN'),
+('mech1','mech1','MECHANIC'),
+('mech2','mech2','MECHANIC'),
+('mech3','mech3','MECHANIC'),
+('mech4','mech4','MECHANIC');
+
 
 INSERT INTO `stockist4`.`suppliers` (supplier_no,supplier_name,supplier_contact,supplier_email) VALUES 
 ('S0001','TOYOTA JAPAN','homozoki noriba','homozoki_noriba@toyota_japan.com.jp'),
@@ -327,16 +266,72 @@ INSERT INTO `stockist4`.`products` (product_no,product_description,dimension,man
 ('P0170','TIMING BELT','NA','NISSAN',2,22,1620,'STORE','S0003',50.4),
 ('P0171','FLYWHEELS','NA','NISSAN',5,46,1620,'STORE','S0003',52.4);
 
+INSERT INTO `stockist4`.`transactions` (transaction_no,transaction_date,transaction_type,created_by,created_for) VALUES 
+('T0001','2017-05-05','PO','admin','NISSAN JAPAN'),
+('T0002','2017-05-06','WO','mech1','Grande Dame'),
+('T0003','2017-05-07','PO','admin','HONDA ASIA PACIFIC PTE LTD'),
+('T0004','2017-05-08','WO','mech2','Pinocchio'),
+('T0005','2017-05-09','PO','admin','TOYOTA APAC'),
+('T0006','2017-05-10','WO','mech3','Ariel LovesWater'),
+('T0007','2017-05-11','PO','admin1','MAZDA JAPAN'),
+('T0008','2017-05-12','WO','mech4','Heath Mayherip'),
+('T0009','2017-05-13','PO','admin','TOYOTA APAC'),
+('T0010','2017-05-14','WO','mech2','Pinocchio'),
+('T0011','2017-05-15','PO','admin','HONDA HEADQUARTERS'),
+('T0012','2017-05-16','WO','mech3','Angeline Jolly'),
+('T0013','2017-05-17','PO','admin','HONDA HEADQUARTERS'),
+('T0014','2017-05-18','WO','mech4','Jennifer Anyson'),
+('T0015','2017-05-19','PO','admin1','HONDA HEADQUARTERS'),
+('T0016','2017-05-20','WO','mech1','Edward Carlen'),
+('T0017','2017-05-21','PO','admin','HOUSE OF MIRRORS'),
+('T0018','2017-05-22','WO','mech3','Jack Spare Roll'),
+('T0019','2017-05-23','PO','admin','HOUSE OF MIRRORS'),
+('T0020','2017-05-24','WO','mech4','Postmaster Getslave'),
+('T0021','2017-05-25','PO','admin','NISSAN JAPAN'),
+('T0022','2017-05-26','WO','mech3','Imso Tiredandslipy'),
+('T0023','2017-05-27','PO','admin1','TOYOTA APAC'),
+('T0024','2017-05-28','WO','mech3','Guessy Guo'),
+('T0025','2017-05-29','PO','admin','HONDA HEADQUARTERS'),
+('T0026','2017-05-30','WO','mech4','Foilsa Pileguin'),
+('T0027','2017-06-01','PO','admin','HONDA HEADQUARTERS');
 
 
-INSERT INTO `stockist4`.`users` VALUES 
-('miki','miki','ADMIN'),
-('admin','admin','ADMIN'),
-('admin1','admin1','ADMIN'),
-('mech1','mech1','MECHANIC'),
-('mech2','mech2','MECHANIC'),
-('mech3','mech3','MECHANIC'),
-('mech4','mech4','MECHANIC');
-
-
-
+INSERT INTO `stockist4`.`transactionlines` (transaction_no,line_no,product_no,posted_qty) VALUES 
+('T0001',1,'P0131',255),
+('T0001',2,'P0106',140),
+('T0001',3,'P0076',209),
+('T0002',1,'P0048',-84),
+('T0002',2,'P0106',-5),
+('T0002',3,'P0123',-148),
+('T0003',1,'P0049',55),
+('T0003',2,'P0019',214),
+('T0003',3,'P0032',267),
+('T0004',1,'P0166',-236),
+('T0005',1,'P0046',39),
+('T0006',1,'P0022',-39),
+('T0007',1,'P0046',280),
+('T0008',1,'P0140',-167),
+('T0009',1,'P0022',272),
+('T0009',2,'P0093',213),
+('T0010',1,'P0081',-100),
+('T0010',2,'P0160',-218),
+('T0010',3,'P0023',-265),
+('T0011',1,'P0126',30),
+('T0012',1,'P0143',-51),
+('T0013',1,'P0072',111),
+('T0014',1,'P0096',-1),
+('T0015',1,'P0161',54),
+('T0016',1,'P0161',-100),
+('T0017',1,'P0094',174),
+('T0018',1,'P0034',-110),
+('T0019',1,'P0034',151),
+('T0020',1,'P0051',-171),
+('T0021',1,'P0130',233),
+('T0022',1,'P0034',-141),
+('T0023',1,'P0051',213),
+('T0024',1,'P0110',-104),
+('T0025',1,'P0093',15),
+('T0026',1,'P0130',-238),
+('T0026',2,'P0093',-290),
+('T0026',3,'P0162',-205),
+('T0027',1,'P0169',204);

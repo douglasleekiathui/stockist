@@ -4,8 +4,6 @@ import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-
-import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
