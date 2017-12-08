@@ -20,9 +20,24 @@ public class Supplier {
 	private String supplierContact;
 	@Column(name="supplier_email")
 	private String supplierEmail;
+	@Column(name="record_status")
+	private int recordStatus;
 	
 	@OneToMany(mappedBy="primarySupplier")
 	private Set<Product> products;
+
+
+
+
+
+
+	public int getRecordStatus() {
+		return recordStatus;
+	}
+
+	public void setRecordStatus(int recordStatus) {
+		this.recordStatus = recordStatus;
+	}
 
 	public String getSupplierNo() {
 		return supplierNo;

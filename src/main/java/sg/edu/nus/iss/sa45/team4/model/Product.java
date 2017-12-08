@@ -28,7 +28,18 @@ public class Product {
 	@Column(name="onhand_qty")
 	private int onhandQty;
 	private BigDecimal price;
+	@Column(name="record_status")
+	private int record_status;
 	
+	
+	public int getRecord_status() {
+		return record_status;
+	}
+
+	public void setRecord_status(int record_status) {
+		this.record_status = record_status;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="primary_supplier")
 	private Supplier primarySupplier;
@@ -112,6 +123,8 @@ public class Product {
 	public void setPrimarySupplier(Supplier primarySupplier) {
 		this.primarySupplier = primarySupplier;
 	}
+
+
 	
 	
 	
