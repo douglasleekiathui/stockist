@@ -5,15 +5,24 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@SuppressWarnings("serial")
-@Embeddable
+
 public class TransactionLineId implements Serializable {
 
+	
+	@Id
 	@Column(name="transaction_no")
 	private String transactionNo;
+	@Id
 	@Column(name="line_no")
 	private int lineNo;
+	
+	
+	
+	
 	public String getTransactionNo() {
 		return transactionNo;
 	}

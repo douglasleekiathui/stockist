@@ -55,5 +55,13 @@ public class UserServiceImpl2 implements UserService{
 	public void removeUser(User User) {
 		UserRepository.delete(User);
 	}
+	
+	@Transactional
+	public User authenticate(String uname, String pwd)
+	{
+		User u= UserRepository.findUserByNamePwd(uname, pwd);
+		return u;
+	}
+
 
 }

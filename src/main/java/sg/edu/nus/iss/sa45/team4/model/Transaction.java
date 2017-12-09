@@ -6,12 +6,16 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 
 @Entity
@@ -31,7 +35,7 @@ public class Transaction {
 	private String createdBy;
 	
 	@OneToMany
-	@JoinColumn(name="transaction_no")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private List<TransactionLine> transactionLines;
 
 	

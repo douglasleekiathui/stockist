@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<span><spring:message code="reorderReportTitle" /></span>
+<span><spring:message code="title.reorderReport" /></span>
 <br/>
 <c:if test="${s != null}">
 	<spring:message code="supplierNo" />= ${s.supplierNo} 

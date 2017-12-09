@@ -20,6 +20,7 @@ import sg.edu.nus.iss.sa45.team4.model.TransactionLine;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
 import sg.edu.nus.iss.sa45.team4.services.RunningNumberService;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
+import sg.edu.nus.iss.sa45.team4.services.TransactionLineService;
 import sg.edu.nus.iss.sa45.team4.services.TransactionService;
 
 @Controller
@@ -34,6 +35,8 @@ public class ProductOrderController {
 	private TransactionService transactionService;
 	@Autowired
 	private RunningNumberService runningNumberService;
+	@Autowired
+	TransactionLineService transactionLineService;
 
 	// view products to be re-ordered
 	@RequestMapping(value = "/{supplier}", method = RequestMethod.GET)
@@ -67,7 +70,6 @@ public class ProductOrderController {
 		tlList.add(tl);
 		tx.setTransactionLines(tlList);
 		tx.setCreatedFor(p.getPrimarySupplier().getSupplierName());
-		tl.setLineNo(1);
 		tl.setProductNo(p.getProductNo());
 		
 		ModelAndView mav = new ModelAndView("/products/orders/new-po-tx", "tx", tx);
@@ -77,19 +79,22 @@ public class ProductOrderController {
 
 	@RequestMapping(value = "/new/p={productNo}", method = RequestMethod.POST)
 	public ModelAndView submitNewOrder(@ModelAttribute("tx") Transaction tx,BindingResult bindingResult) {
-		tx.setCreatedBy("testerDouglas");
-		
 		RunningNumber rn =runningNumberService.findRunningNumber("transactions");
 		rn.setValue(rn.getValue()+1);
 		runningNumberService.changeRunningNumber(rn);
 		String txNo="T"+String.format("%04d", rn.getValue());
 		tx.setTransactionNo(txNo);
-		for (TransactionLine tl : tx.getTransactionLines()){
-			tl.setTransactionNo(txNo);
-		}
+		tx.setCreatedBy("admin");
+		tx.setTransactionType("PO");
+		TransactionLine tl=tx.getTransactionLines().get(0);
+		tl.setTransactionNo(txNo);
+		tl.setLineNo(1);
+		tl.setTransaction(tx);
+		
 		
 		transactionService.createTransaction(tx);
-		ModelAndView mav = new ModelAndView("/products/orders/all");
+		transactionLineService.createTransactionLine(tl);
+		ModelAndView mav = new ModelAndView("redirect:/products/orders/all");
 		return mav;
 	}
 
