@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class TransactionLine {
 
 	@EmbeddedId
-	private TransactionLineId transactionLineId;
+	private TransactionLineId transactionLineId= new TransactionLineId();
 	@Column(name="product_no")
 	private String productNo;
 	@Column(name="posted_qty")

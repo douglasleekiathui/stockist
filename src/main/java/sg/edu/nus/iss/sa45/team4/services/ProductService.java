@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sg.edu.nus.iss.sa45.team4.model.Product;
+import sg.edu.nus.iss.sa45.team4.model.Supplier;
 
 public interface ProductService {
 
@@ -17,6 +18,10 @@ public interface ProductService {
 
 	void removeProduct(Product Product);
 
-	List<Product> getReorderProductByPage(String page, int sizePerPage);
+	List<Product> getReorderProductByPage();
+	
+	List<Product> findProductsBySupplier(Supplier s);
+	
+	List<Product> findReorderProductsBySupplier(Supplier s);
 	
 }

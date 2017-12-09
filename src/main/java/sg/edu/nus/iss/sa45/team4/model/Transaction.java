@@ -1,7 +1,8 @@
 package sg.edu.nus.iss.sa45.team4.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +32,23 @@ public class Transaction {
 	
 	@OneToMany
 	@JoinColumn(name="transaction_no")
-	private Set<TransactionLine> transactionLines;
+	private List<TransactionLine> transactionLines;
+
+	
+	
+	public Transaction() {
+	}
+
+	public Transaction(String transactionNo, String transactionType, Date transactionDate, String createdFor,
+			String createdBy, List<TransactionLine> transactionLines) {
+		super();
+		this.transactionNo = transactionNo;
+		this.transactionType = transactionType;
+		this.transactionDate = transactionDate;
+		this.createdFor = createdFor;
+		this.createdBy = createdBy;
+		this.transactionLines = transactionLines;
+	}
 
 	public String getTransactionNo() {
 		return transactionNo;
@@ -73,16 +90,14 @@ public class Transaction {
 		this.createdBy = createdBy;
 	}
 
-	public Set<TransactionLine> getTransactionLines() {
+	public List<TransactionLine> getTransactionLines() {
 		return transactionLines;
 	}
 
-	public void setTransactionLines(Set<TransactionLine> transactionLines) {
+	public void setTransactionLines(List<TransactionLine> transactionLines) {
 		this.transactionLines = transactionLines;
 	}
 
-	
-	
 	
 	
 

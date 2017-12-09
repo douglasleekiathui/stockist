@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.nus.iss.sa45.team4.model.Product;
+import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.repository.ProductRepository;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
 
@@ -58,18 +59,33 @@ public class ProductServiceImpl implements ProductService{
 		ProductRepository.delete(Product);
 	}
 
-	/*
-     * Manual implementation of pagination, because spring's page is too troublesome
-     * Takes in pageNumber and sizePerPage, returns the subList
-     * also does custom sorting which follows ReorderProductComparator
-     */
+
     @Transactional(readOnly=true)
-    public List<Product> getReorderProductByPage(String page, int sizePerPage){
+    public List<Product> getReorderProductByPage(){
          List<Product> products = ProductRepository.findReorderProducts();
-         Collections.sort(products, new ReorderProductComparator());
-         int pageNo=Integer.parseInt(page);
-         int from = Math.max(0,pageNo*sizePerPage);
-         int to = Math.min(products.size(),(pageNo+1)*sizePerPage);
-         return products.subList(from,to);
+         return products;
+//     		/*
+//          * Manual implementation of pagination, because spring's page is too troublesome
+//          * Takes in pageNumber and sizePerPage, returns the subList
+//          * also does custom sorting which follows ReorderProductComparator
+//          */
+//         Collections.sort(products, new ReorderProductComparator());
+//         int pageNo=Integer.parseInt(page);
+//         int from = Math.max(0,pageNo*sizePerPage);
+//         int to = Math.min(products.size(),(pageNo+1)*sizePerPage);
+//         return products.subList(from,to);
+    }
+    
+    
+    @Override
+    public List<Product> findProductsBySupplier(Supplier s){
+    	List<Product> products= ProductRepository.findProductsBySupplier(s);
+    	return products;
+    }
+    
+    @Override
+    public List<Product> findReorderProductsBySupplier(Supplier s){
+    	List<Product> products= ProductRepository.findReorderProductsBySupplier(s);
+    	return products;
     }
 }
