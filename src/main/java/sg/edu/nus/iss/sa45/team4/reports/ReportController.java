@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
-import sg.edu.nus.iss.sa45.team4.model.Product;
 import sg.edu.nus.iss.sa45.team4.services.TransactionService;
 
 	

@@ -11,47 +11,84 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
                 crossorigin="anonymous">
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-            <title>View all products</title>
+            <title>Edit products</title>
+            <style type="text/css">
+            
+input:read-only{
+	background-color: #f3f3f3;
+}
+           </style>
         </head>
 
         <body>
-<h3>Edit Product page</h3>
+<h3>Edit Product Page</h3>
 <form:form method="POST" modelAttribute="product" 
 action="${pageContext.request.contextPath}/products/edit/${product.productNo}.html">
 	<table>
 		<tbody>
 		<tr>
 				<td>Product No</td>
-				<td><form:input path="productNo" readOnly="true" /></td>
+				<td><form:input path="productNo" readOnly="true"  class="form-control"/></td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>Description</td>
-				<td><form:input path="productDescription" /></td>
-				<td></td>
+				<td><form:input path="productDescription"  class="form-control" /></td>
+				<td><form:errors path="productDescription" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Dimensions></td>
-				<td><form:input path="dimension" /></td>
-				<td></td>
+				<td>Dimensions</td>
+				<td><form:input path="dimension"  class="form-control"/></td>
+				<td><form:errors path="dimension" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Manufacturer</td>
-				<td><form:input path="manufacturer" /></td>
-				<td></td>
+				<td>
+				<select class="custom-select" name="manufacturer" id="manufacturer">
+				  <option value="NA" ${product.manufacturer == "NA" ? 'selected="selected"' : ''}>NA</option>
+				  <option value="TOYOTA" ${product.manufacturer == "TOYOTA" ? 'selected="selected"' : ''}>TOYOTA</option>
+				  <option value="MAZDA" ${product.manufacturer == "MAZDA" ? 'selected="selected"' : ''}>MAZDA</option>
+				  <option value="HONDA" ${product.manufacturer == "HONDA" ? 'selected="selected"' : ''}>HONDA</option>
+				  <option value="NISSAN" ${product.manufacturer == "NISSAN" ? 'selected="selected"' : ''}>NISSAN</option>
+				  <option value="MITSUBISHI" ${product.manufacturer == "MITSUBISHI" ? 'selected="selected"' : ''}>MITSUBISHI</option>
+				  <option value="LEXUS" ${product.manufacturer == "LEXUS" ? 'selected="selected"' : ''}>LEXUS</option>
+				  <option value="SUBARU" ${product.manufacturer == "SUBARU" ? 'selected="selected"' : ''}>SUBARU</option>
+				  <option value="HINO" ${product.manufacturer == "HINO" ? 'selected="selected"' : ''}>HINO</option>
+				  <option value="DAIHATSU" ${product.manufacturer == "SUBARU" ? 'selected="selected"' : ''}>DAIHATSU</option>
+				</select>
+				</td>
 			</tr>
 			<tr>
-				<td>Shelf Location></td>
-				<td><form:input path="shelfLocation" /></td>
-				<td></td>
+				<td>Shelf Location</td>
+				<td>
+				<select class="custom-select" name="shelfLocation" id="shelfLocation">
+				  <option value="ONSITE" ${product.shelfLocation == "ONSITE" ? 'selected="selected"' : ''}>ONSITE</option>
+				  <option value="STORE" ${product.shelfLocation == "STORE" ? 'selected="selected"' : ''}>STORE</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Onhand Quantity</td>
+				<td><form:input path="onhandQty"  class="form-control"  type="number"  required="required"/></td>
+				<td><form:errors path="onhandQty" cssStyle="color: red;" /></td>
+			</tr>
+			<tr>
+				<td>Minimum Quantity</td>
+				<td><form:input path="minQty"  class="form-control"  type="number" required="required"/></td>
+				<td><form:errors path="minQty" cssStyle="color: red;" /></td>
+			</tr>
+			<tr>
+				<td>Reorder Quantity</td>
+				<td><form:input path="reorderQty"  class="form-control" type="number"  required="required" /></td>
+				<td><form:errors path="reorderQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td>Price</td>
-				<td><form:input path="price" /></td>
-				<td></td>
+				<td><form:input path="price"  class="form-control" /></td>
+				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Update" /></td>
+				<td><input type="submit" value="Update" class="btn btn-primary" /></td>
 				<td></td>
 				<td></td>
 			</tr>

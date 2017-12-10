@@ -29,23 +29,12 @@
 
 
 	<dependencies>
-		<!-- display tag for pagination-->
+	<!-- display tag for pagination-->
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag</artifactId>
 			<version>1.1</version>
 		</dependency>
-		<!-- Jasper Reports -->
-		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>6.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-
 		<!-- Spring Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -100,16 +89,10 @@
 			<artifactId>spring-batch-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
 		</dependency>
 		<!-- Standard Web Container -->
 		<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
@@ -124,8 +107,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
-		</dependency>
+			</dependency>
 		<!-- Site Mesh Template Engine -->
 		<!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
 		<dependency>
@@ -134,7 +116,7 @@
 			<version>${sitemesh.version}</version>
 		</dependency>
 	</dependencies>
-
+	
 
 	<build>
 		<plugins>
