@@ -3,6 +3,8 @@ package sg.edu.nus.iss.sa45.team4.controller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.lowagie.text.List;
 
 import sg.edu.nus.iss.sa45.team4.model.Transaction;
 import sg.edu.nus.iss.sa45.team4.model.TransactionLine;
@@ -29,6 +33,7 @@ class MechanicProductControllerTest {
 	@Autowired
 	private ProductService pService;
 	
+	
 	@Autowired
 	TransactionService tService;
 	
@@ -43,11 +48,10 @@ class MechanicProductControllerTest {
 		return mav;
 	}
 
-	@RequestMapping(value = "/recordUsage/{id}", method = RequestMethod.GET)
-	public ModelAndView recordUsagePage(@PathVariable String id) {
+	@RequestMapping(value = "/recordUsage/{productNo}", method = RequestMethod.GET)
+	public ModelAndView recordUsagePage(@PathVariable String productNo) {
 		ModelAndView mav = new ModelAndView("mechanic-record-product-usage");
-		String ceid = id;
-		Product products = pService.findProduct(ceid);
+		Product products = pService.findProduct(productNo);
 		Integer usedAmount = 0;
 		mav.addObject("products", products);
 		mav.addObject("usedAmount", usedAmount);
@@ -55,34 +59,38 @@ class MechanicProductControllerTest {
 
 	}
 
-	@RequestMapping(value = "/recordUsage/{id}", method = RequestMethod.POST)
-	public ModelAndView recordUsagePage(@ModelAttribute Product products, BindingResult result, @PathVariable String id, final RedirectAttributes redirectAttributes, @RequestParam String usedQuantityTextBox) {
+	@RequestMapping(value = "/recordUsage/{productNo}", method = RequestMethod.POST)
+	public ModelAndView recordUsagePage(@ModelAttribute Product products, BindingResult result, @PathVariable String productNo, final RedirectAttributes redirectAttributes, @RequestParam String usedQuantityTextBox, @RequestParam String customerName) {
 		
 		ModelAndView mav = new ModelAndView("redirect:/mechanic/list");
-		products = pService.findProduct(id);
+		
+		products = pService.findProduct(productNo);
+		
 		Integer usedQuantity = Integer.parseInt(usedQuantityTextBox);
-		Integer newQuantity = products.getOnhandQty()- usedQuantity;
-		pService.updateUsage(products.getProductNo(), newQuantity);
+		
 		Date today = new Date();
-		
-
-		
+				
 		Transaction tr = new Transaction();
 		TransactionLine tl = new TransactionLine();
 		
-		tr.setCreatedBy("Mechanic1");
-		tr.setCreatedFor("Customer1");
+		
+		tr.setCreatedBy("mech1");
+		tr.setCreatedFor(customerName);
 		tr.setTransactionDate(today);
 		tr.setTransactionType("WO");
 		
-		tl.setLineNo(1);
-		tl.setPostedQty(newQuantity);
-		tl.setProductNo(id);
+		
+		tl.setPostedQty((-usedQuantity));
+		tl.setProductNo(productNo);
+		tl.setTransaction(tr);
+		ArrayList<TransactionLine> tList = new ArrayList<TransactionLine>();
+		tList.add(tl);
+		tr.setTransactionLines(tList);
 		
 		tService.createTransaction(tr);
-		tlService.createTransactionLine(tl);
+
 		
-		String message = "Products successfully updated.";		
+		String message = "Record done !.";		
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}

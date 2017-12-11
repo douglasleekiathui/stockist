@@ -26,7 +26,7 @@
 				<a href="${pageContext.request.contextPath}/products/view/${products.productNo}.html">View Details</a>
 			</td>
 			<td>
-				<a href="${pageContext.request.contextPath}/mechanic/products/recordUsage/${products.productNo}.html">Record Usage</a>
+				<a href="${pageContext.request.contextPath}/mechanic/recordUsage/${products.productNo}.html">Record Usage</a>
 			</td>
 		</tr>
 	</c:forEach>
