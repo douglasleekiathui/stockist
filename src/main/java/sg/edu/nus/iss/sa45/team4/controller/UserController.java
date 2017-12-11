@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.t4.exception.UserNotFound;
-
 import sg.edu.nus.iss.sa45.team4.model.User;
 import sg.edu.nus.iss.sa45.team4.services.UserService;
 
@@ -74,7 +72,7 @@ public class UserController {
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public ModelAndView editUser(@ModelAttribute @Valid User users, BindingResult result, @PathVariable String id,
-			final RedirectAttributes redirectAttributes) throws UserNotFound {
+			final RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors())
 			return new ModelAndView("user-edit");
@@ -89,8 +87,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteUser(@PathVariable String id, final RedirectAttributes redirectAttributes)
-			throws UserNotFound {
+	public ModelAndView deleteUser(@PathVariable String id, final RedirectAttributes redirectAttributes) {
 
 		ModelAndView mv = new ModelAndView("redirect:/users/list");
 		User user = uService.findUser(id);

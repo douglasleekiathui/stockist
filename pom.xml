@@ -32,6 +32,12 @@
 
 
 	<dependencies>
+
+		<!-- security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
 		<!-- testing units -->
 		<dependency>
 			<groupId>com.github.springtestdbunit</groupId>
@@ -175,7 +181,7 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-<!-- Standard Web Container -->
+		<!-- Standard Web Container -->
 		<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
 		<dependency>
 			<groupId>javax</groupId>
