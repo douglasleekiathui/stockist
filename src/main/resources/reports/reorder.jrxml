@@ -1,0 +1,212 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN"
+   "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+   http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="reorder" pageWidth="595" pageHeight="842" 
+              columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20">
+  
+  <!-- fields to be used -->
+    <field name="primarySupplier" class="java.lang.String">
+        <fieldDescription><![CDATA[primarySupplier]]></fieldDescription>
+    </field>
+    <field name="productNo" class="java.lang.String">
+        <fieldDescription><![CDATA[productNo]]></fieldDescription>
+    </field>    
+    <field name="productDescription" class="java.lang.String">
+        <fieldDescription><![CDATA[productDescription]]></fieldDescription>
+    </field>
+    <field name="price" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[price]]></fieldDescription>
+    </field>
+    <field name="onhandQty" class="java.lang.Integer">
+        <fieldDescription><![CDATA[onhandQty]]></fieldDescription>
+    </field>
+    <field name="reorderQty" class="java.lang.Integer">
+        <fieldDescription><![CDATA[reorderQty]]></fieldDescription>
+    </field>
+     <field name="minQty" class="java.lang.Integer">
+        <fieldDescription><![CDATA[minQty]]></fieldDescription>
+     </field>      
+	<variable name="totalPrice" class="java.math.BigDecimal" calculation="Sum">
+        <variableExpression><![CDATA[$F{price}.multiply(java.math.BigDecimal.valueOf(java.lang.Math.max(0,$F{minQty}+$F{reorderQty}-$F{onhandQty})))]]></variableExpression>
+     </variable>
+
+ 
+ 	<!-- report formatting -->
+ 	<!-- header -->
+ 		<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="400" height="30" />
+				<textElement>
+				<font size= "15" />
+				</textElement>
+				<text><![CDATA[Inventory Reorder Report]]></text>
+			</staticText>
+<!--
+			<textField>
+				<reportElement x="300" y="0" width="300" height="15" />
+				<textFieldExpression><![CDATA[$F{primarySupplier}]]></textFieldExpression>
+			</textField>
+-->
+		 	<staticText>
+				<reportElement x="0" y="50" width="70" height="30" />
+				<text><![CDATA[Printed On:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="70" y="50" width="100" height="30" />
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+ 	<!-- column header -->
+
+<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="30" />
+				<text><![CDATA[Part No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="100" height="30" />
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="65" height="30" />
+				<textElement textAlignment="Center" />
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="0" width="65" height="30" />
+				<textElement textAlignment="Center" />
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="65" height="30" />
+				<textElement textAlignment="Center" />
+				<text><![CDATA[Reorder Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="65" height="30" />
+				<textElement textAlignment="Center" />
+				<text><![CDATA[Min Ord Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="65" height="30" />
+				<textElement textAlignment="Center" />
+				<text><![CDATA[Ord. Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="0" width="65" height="30" />
+				<textElement textAlignment="Center" />
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="20" width="550" height="1" >
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+    
+    
+    <!-- report body -->
+    <detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="15" />
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{productNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="100" height="15" />
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{productDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="65" height="15" />
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="0" width="65" height="15" />
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{onhandQty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="65" height="15" />
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{reorderQty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="65" height="15" />
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{minQty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="65" height="15" />
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.lang.Math.max(0,$F{minQty}+$F{reorderQty}-$F{onhandQty})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="485" y="0" width="65" height="15" />
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{price}.multiply(java.math.BigDecimal.valueOf(java.lang.Math.max(0,$F{minQty}+$F{reorderQty}-$F{onhandQty})))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+<!-- page number -->
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="480" y="30" width="70" height="20" />
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+<!-- end of report -->	
+<summary>
+		<band height="60" splitType="Stretch">
+					<line>
+				<reportElement positionType="Float" x="0" y="0" width="550" height="1">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="410" y="10" width="80" height="15" />
+				<text><![CDATA[Total Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="10" width="70" height="15" />
+				<textFieldExpression><![CDATA[$V{totalPrice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="227" y="30" width="100" height="20" />
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[End Of Report]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="55" width="550" height="1">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

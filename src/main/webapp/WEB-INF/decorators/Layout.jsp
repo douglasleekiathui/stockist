@@ -1,14 +1,13 @@
-<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
-	prefix="dec"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<%@include file="Header.jsp"%>
+
 <c:url value="/css/simple.css" var="ss"/>
 <link rel="STYLESHEET" type="text/css"
 	href="${ss}" />
-<dec:head />
+<tiles:insertAttribute name="header" />
 </head>
 <body>
 	<table style="width: 100%">
@@ -16,7 +15,7 @@
 			<td style="width: 180; border: 1" valign="top">
 				<div>
 					
-					<%@ include file="Menu.jsp"%>
+					<tiles:insertAttribute name="menu" />
 				</div>
 			</td>
 			<td>
@@ -24,7 +23,7 @@
 					<h3>
 						<spring:message code="${bodyTitle}" />
 					</h3>
-					<dec:body />
+					<tiles:insertAttribute name="body" />
 				</div>
 			</td>
 		</tr>
