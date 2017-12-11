@@ -150,8 +150,8 @@ public class ProductController {
 	        }
 		ModelAndView mav = new ModelAndView();
 		String message ="New Product" + product.getProductNo() +" was successfully created.";
-		
 		pService.createProduct(product);
+		product.setRecord_status(1);
 		mav.setViewName("redirect:/products/view");
 		
 		redirectAttributes.addFlashAttribute("message", message);

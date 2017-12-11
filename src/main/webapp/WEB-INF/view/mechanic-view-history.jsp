@@ -21,30 +21,20 @@
 	 <thead>
 	 <tr class="listHeading">
 		<th>Transaction No.</th>
-		<th></th>
 		<th>Date</th>
-		<th></th>
 	    <th>Type</th>
-	    <th></th>
 		<th>Created By</th>
-		<th></th>
 		<th>Created For</th>
-		<th></th>
 	</tr>
  </thead>
   <tbody>
 	<c:forEach var="tList" items="${tList}">
 		<tr class="listRecord">
 			<td>${tList.transactionNo }</td>
-			<td></td>
 			<td>${tList.transactionDate }</td>
-			<td></td>
 			<td>${tList.transactionType }</td>
-			<td></td>
 			<td>${tList.createdBy }</td>
-			<td></td>
-			<td>${tList.createdFor}</td>
-			<td></td>			
+			<td>${tList.createdFor}</td>	
 		</tr>
 	</c:forEach>
 </tbody>
