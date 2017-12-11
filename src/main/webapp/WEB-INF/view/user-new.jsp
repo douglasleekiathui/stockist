@@ -18,17 +18,25 @@
 			
 			<tr>
 				<td><spring:message code="fieldLabel.password" /></td>
+<<<<<<< HEAD
+				<td><form:input path="password" class="form-control" /></td>
+=======
 				<td><form:input path="password" class="form-control"/></td>
+>>>>>>> branch 'master' of https://github.com/douglasleekiathui/stockist
 				<td><form:errors path="password" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.user_role" /></td>
+<<<<<<< HEAD
+				<td><form:input path="userRole" class="form-control"/></td>
+=======
 				<td><form:input path="userRole" class="form-control" /></td>
+>>>>>>> branch 'master' of https://github.com/douglasleekiathui/stockist
 				<td><form:errors path="userRole" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Create" /></td>
+				<td><input type="submit" value="Create" class="btn btn-primary" /></td>
 				<td></td>
 				<td></td>
 			</tr>

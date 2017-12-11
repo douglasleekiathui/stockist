@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,7 @@ import com.lowagie.text.List;
 
 import sg.edu.nus.iss.sa45.team4.model.Transaction;
 import sg.edu.nus.iss.sa45.team4.model.TransactionLine;
+import sg.edu.nus.iss.sa45.team4.model.TransactionLineId;
 import sg.edu.nus.iss.sa45.team4.model.Product;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
 import sg.edu.nus.iss.sa45.team4.services.TransactionLineService;
@@ -30,6 +34,7 @@ import sg.edu.nus.iss.sa45.team4.services.TransactionService;
 
 class MechanicProductControllerTest {
 
+	
 	@Autowired
 	private ProductService pService;
 	
@@ -50,7 +55,7 @@ class MechanicProductControllerTest {
 
 	@RequestMapping(value = "/recordUsage/{productNo}", method = RequestMethod.GET)
 	public ModelAndView recordUsagePage(@PathVariable String productNo) {
-		ModelAndView mav = new ModelAndView("mechanic-record-product-usage");
+		ModelAndView mav = new ModelAndView("mechanic-record-usage");
 		Product products = pService.findProduct(productNo);
 		Integer usedAmount = 0;
 		mav.addObject("products", products);
@@ -80,14 +85,14 @@ class MechanicProductControllerTest {
 		tr.setCreatedFor(customerName);
 		tr.setTransactionDate(today);
 		tr.setTransactionType("WO");
-		
+		//
 		
 		tl.setPostedQty((-usedQuantity));
 		tl.setProductNo(productNo);
 		tl.setTransaction(tr);
-		ArrayList<TransactionLine> tList = new ArrayList<TransactionLine>();
-		tList.add(tl);
-		tr.setTransactionLines(tList);
+		ArrayList<TransactionLine> tlList = new ArrayList<TransactionLine>();
+		tlList.add(tl);
+		tr.setTransactionLines(tlList);
 		
 		tService.createTransaction(tr);
 
@@ -95,5 +100,23 @@ class MechanicProductControllerTest {
 		String message = "Record done !.";		
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
+	}//
+	
+	@RequestMapping(value = "/viewHistory/{productNo}", method = RequestMethod.GET)
+	public ModelAndView viewHistoryPage(@PathVariable String productNo) {
+		
+		ModelAndView mav = new ModelAndView("mechanic-view-history");		
+		ArrayList<Transaction> tList = new ArrayList<Transaction>();			
+		tList = tService.findAllTransactions();
+		
+		ArrayList<TransactionLine> tlList = new ArrayList<TransactionLine>();			
+		tlList = tlService.findAllTransactionLines();
+		
+		mav.addObject("tList", tList);	
+		mav.addObject("tlList", tlList);
+		return mav;
+
 	}
+	
+	
 }

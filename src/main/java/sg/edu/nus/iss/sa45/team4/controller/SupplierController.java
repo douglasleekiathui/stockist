@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.t4.exception.SupplierNotFound;
 
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
@@ -110,7 +109,7 @@ public class SupplierController {
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteSupplier(@PathVariable String id, final RedirectAttributes redirectAttributes)
-			throws SupplierNotFound {
+			 {
 
 		ModelAndView mv = new ModelAndView("redirect:/suppliers/list");
 		Supplier supplier = sService.findSupplier(id);
