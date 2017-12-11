@@ -88,4 +88,11 @@ public class ProductServiceImpl implements ProductService{
     	List<Product> products= ProductRepository.findReorderProductsBySupplier(s);
     	return products;
     }
+
+
+	@Override
+	public void updateUsage(String productNum, int quantity) {
+		// TODO Auto-generated method stub
+		
+	}
 }
