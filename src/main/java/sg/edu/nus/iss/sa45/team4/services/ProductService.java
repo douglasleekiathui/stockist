@@ -24,4 +24,6 @@ public interface ProductService {
 	
 	List<Product> findReorderProductsBySupplier(Supplier s);
 	
+	void updateUsage(String productNum, int quantity);
+	
 }

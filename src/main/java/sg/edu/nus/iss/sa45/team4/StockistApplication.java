@@ -133,4 +133,6 @@ public class StockistApplication {
 		properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		return properties;
 	}
+	
+	
 }
