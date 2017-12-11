@@ -29,6 +29,7 @@
 
 
 	<dependencies>
+
 		<!-- email -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -36,11 +37,15 @@
 			<version>1.4.3.RELEASE</version>
 		</dependency>
 		<!-- display tag for pagination -->
+
+	<!-- display tag for pagination-->
+
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag</artifactId>
 			<version>1.1</version>
 		</dependency>
+
 		<!-- Jasper Reports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
@@ -111,12 +116,12 @@
 			<artifactId>spring-batch-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -126,6 +131,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+
 		<!-- Standard Web Container -->
 		<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
 		<dependency>
@@ -139,7 +145,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
 		</dependency>
 
 		<!-- Tiles, alternative to Sitemesh -->
@@ -154,7 +159,7 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
+	
 
 	<build>
 		<plugins>

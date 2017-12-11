@@ -53,19 +53,15 @@ public class StockistApplication {
 	//tiles, alternative to sitemesh-------------------------------------------
 	@Bean
 	public UrlBasedViewResolver tilesViewResolver() {
-
 		UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
 		tilesViewResolver.setViewClass(TilesView.class);
 		return tilesViewResolver;
 	}
-
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
-
 		TilesConfigurer tconf = new TilesConfigurer();
 		tconf.setDefinitions(new String[] { "/WEB-INF/decorators/tiles.xml" });
 		return tconf;
-
 	}
 	
 	//property files-----------------------------------------------------------

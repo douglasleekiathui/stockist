@@ -31,7 +31,7 @@ import sg.edu.nus.iss.sa45.team4.validator.ProductOrderValidator;
 @RequestMapping("/products/orders")
 public class ProductOrderController {
 
-	//business logic
+	// business logic
 	@Autowired
 	private ProductService productService;
 	@Autowired
@@ -39,16 +39,14 @@ public class ProductOrderController {
 	@Autowired
 	private TransactionService transactionService;
 
-	
-	
-	//validator
+	// validator
 	@Autowired
 	private ProductOrderValidator productOrderValidator;
-	@InitBinder(value="tx")
+
+	@InitBinder(value = "tx")
 	private void initProductOrderBinder(WebDataBinder webDataBinder) {
 		webDataBinder.setValidator(productOrderValidator);
 	}
-	
 
 	// view products to be re-ordered
 	@RequestMapping(value = "/{supplier}", method = RequestMethod.GET)
@@ -71,10 +69,9 @@ public class ProductOrderController {
 		return "forward:/products/orders/all";
 	}
 
-
 	// create new purchase order for individual product
 	@RequestMapping(value = "/new/p={productNo}", method = RequestMethod.GET)
-	public ModelAndView addNewOrder(@PathVariable("productNo") String productNo ) {
+	public ModelAndView addNewOrder(@PathVariable("productNo") String productNo) {
 		Product p = productService.findProduct(productNo);
 		Transaction tx = new Transaction();
 		TransactionLine tl = new TransactionLine();
@@ -85,55 +82,49 @@ public class ProductOrderController {
 		tx.setTransactionDate(Calendar.getInstance().getTime());
 		tl.setProductNo(p.getProductNo());
 		tl.setTransaction(tx);
-		
-		ModelAndView mav = new ModelAndView("products/orders/new-po-tx","tx", tx);
+
+		ModelAndView mav = new ModelAndView("products/orders/new-po-tx", "tx", tx);
 		mav.addObject("p", p);
 		return mav;
-	}	
+	}
 
 	@RequestMapping(value = "/new/*", method = RequestMethod.POST)
-	public ModelAndView submitNewOrder(
-			@ModelAttribute("tx") @Valid Transaction tx,
-			BindingResult bindingResult, 
+	public ModelAndView submitNewOrder(@ModelAttribute("tx") @Valid Transaction tx, BindingResult bindingResult,
 			final RedirectAttributes redirectAttributes) {
-		
+
 		if (bindingResult.hasErrors())
 			return new ModelAndView("products/orders/new-po-tx");
-		
+
 		tx.setCreatedBy("admin");
 		tx.setTransactionType("PO");
-		transactionService.createTransaction(tx);		
+		transactionService.createTransaction(tx);
 		String message = "Purchase was successfully updated.";
-		
+
 		ModelAndView mav = new ModelAndView("redirect:/products/orders/all");
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
 
-	
 	// create new purchase order for supplier
 	@RequestMapping(value = "/new/s={supplier}", method = RequestMethod.GET)
 	public ModelAndView viewSupplier(@PathVariable String supplier) {
 		Supplier s = supplierService.findSupplier(supplier);
 		List<Product> products = productService.findProductsBySupplier(s);
-		Transaction tx= new Transaction();
+		Transaction tx = new Transaction();
 		tx.setTransactionDate(Calendar.getInstance().getTime());
 		tx.setCreatedFor(s.getSupplierName());
-		ArrayList<TransactionLine> tlList= new ArrayList<TransactionLine>();
-		for (Product p:products) {
-			TransactionLine tl= new TransactionLine();
+		ArrayList<TransactionLine> tlList = new ArrayList<TransactionLine>();
+		for (Product p : products) {
+			TransactionLine tl = new TransactionLine();
 			tl.setTransaction(tx);
 			tl.setProductNo(p.getProductNo());
-			tl.setPostedQty(java.lang.Math.max(p.getReorderQty()-p.getOnhandQty(),0));
+			tl.setPostedQty(java.lang.Math.max(p.getReorderQty() - p.getOnhandQty(), 0));
 			tlList.add(tl);
 		}
 		tx.setTransactionLines(tlList);
-		
-		
-		ModelAndView mav = new ModelAndView("products/orders/new-po-tx","tx", tx);
+
+		ModelAndView mav = new ModelAndView("products/orders/new-po-tx", "tx", tx);
 		return mav;
 	}
-	
-	
-	
+
 }
