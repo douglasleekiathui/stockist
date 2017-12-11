@@ -5,6 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <h3>Products List page</h3>
+
+			<td>
+				<a href="${pageContext.request.contextPath}/mechanic/viewHistory/${products.productNo}.html">View History</a>
+			</td>
+			
+			
 <c:if test="${fn:length(productsList) gt 0}">
 <table style="cellspacing: 2; cellpadding: 2; border: 1;">
 
@@ -23,7 +29,7 @@
 			<td>${products.productDescription}</td>
 			<td>${products.onhandQty}</td>
 			<td>
-				<a href="${pageContext.request.contextPath}/products/view/${products.productNo}.html">View Details</a>
+				<a href="${pageContext.request.contextPath}/products/detail/${products.productNo}.html">View Details</a>
 			</td>
 			<td>
 				<a href="${pageContext.request.contextPath}/mechanic/recordUsage/${products.productNo}.html">Record Usage</a>
