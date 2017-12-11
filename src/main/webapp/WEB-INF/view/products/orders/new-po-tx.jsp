@@ -21,7 +21,7 @@
 
 Update Inventory Receipt/Purchase
 <form:form method="POST" modelAttribute="tx" action="${pageContext.request.contextPath}/products/orders/new/p=${p.productNo}.html" >
-Date: <form:input type="date" path="transactionDate"/><form:errors path="transactionDate" cssStyle="color: red;" />
+Date:<form:input type="date" class="form-control" path="transactionDate"/><form:errors path="transactionDate" cssStyle="color: red;" />
 Supplier Name: <form:input type="text" path="createdFor"/><form:errors path="createdFor" cssStyle="color: red;" />
 <c:forEach varStatus="tl" items="${tx.transactionLines}">
 <div class="txline">
@@ -30,8 +30,9 @@ Supplier Name: <form:input type="text" path="createdFor"/><form:errors path="cre
 <span class="txlineitem">Posted Qty: <form:input type="text" path="transactionLines[${tl.index}].postedQty" value="${p.reorderQty}"/>
 <form:errors  path="transactionLines[${tl.index}].postedQty" cssStyle="color: red;" /></span>
 </div>
+    
 </c:forEach>
-<input type="submit" value="Submit" />
+<input type="submit" value="Submit" class="btn btn-primary"/>
 </form:form>
 </body>
 </html>

@@ -155,6 +155,14 @@ public class ProductController {
 		return mav;
 		
 	}
+	@RequestMapping(value = "/detail/{productNo}", method = RequestMethod.GET)
+	public ModelAndView DetailProductPage(@PathVariable String productNo) {
+		ModelAndView mav = new ModelAndView("detail");
+		Product product = pService.findProduct(productNo);
+		mav.addObject("product", product);
+		mav.setViewName("/products/detail");
+		return mav;
+	}
 	
 	@RequestMapping(value = "/edit/{productNo}", method = RequestMethod.GET)
 	public ModelAndView editProductPage(@PathVariable String productNo) {

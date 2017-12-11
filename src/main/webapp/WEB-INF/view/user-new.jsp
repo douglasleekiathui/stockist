@@ -10,23 +10,23 @@
 		<tbody>
 			<tr>
 				<td><spring:message code="fieldLabel.user" /></td>
-				<td><form:input path="user" /></td>
+				<td><form:input path="user" class="form-control" /></td>
 				<td><form:errors path="user" cssStyle="color: red;" /></td>
 			</tr>
 			
 			<tr>
 				<td><spring:message code="fieldLabel.password" /></td>
-				<td><form:input path="password" /></td>
+				<td><form:input path="password" class="form-control" /></td>
 				<td><form:errors path="password" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.user_role" /></td>
-				<td><form:input path="userRole" /></td>
+				<td><form:input path="userRole" class="form-control"/></td>
 				<td><form:errors path="userRole" cssStyle="color: red;" /></td>
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Create" /></td>
+				<td><input type="submit" value="Create" class="btn btn-primary" /></td>
 				<td></td>
 				<td></td>
 			</tr>
