@@ -5,5 +5,5 @@
 
 					<spring:url value="/admin/student/list" var="slist"
 							htmlEscape="true" /> <a href="${slist}"> 
-							Listing Pagejj
+							
 					</a>
