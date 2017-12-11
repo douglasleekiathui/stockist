@@ -8,6 +8,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import com.t4.exception.UserNotFound;
 
 import sg.edu.nus.iss.sa45.team4.model.User;
 import sg.edu.nus.iss.sa45.team4.services.UserService;
+import sg.edu.nus.iss.sa45.team4.validator.UserValidator;
 
 @Controller
 @RequestMapping("/users")
@@ -27,6 +30,13 @@ public class UserController {
 	@Autowired
 	private UserService uService;
 
+	@Autowired
+	private UserValidator uValidator;
+
+	@InitBinder("user")
+	private void initUserBinder(WebDataBinder binder) {
+		binder.addValidators(uValidator);
+	}
 	@RequestMapping(value="/create",method = RequestMethod.GET)
 	public ModelAndView newUserPage()
 	{
@@ -39,11 +49,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public ModelAndView createNewUser(@ModelAttribute  User users, BindingResult result, 
+	public ModelAndView createNewUser(@ModelAttribute @Valid User users, BindingResult result, 
 			final RedirectAttributes redirectAttributes)
 	{
-		if(result.hasErrors())
-			return new ModelAndView("user-new");
+		if(result.hasErrors()) {
+			ModelAndView mv=new ModelAndView("user-new");
+			//mv.addObject("user",users);
+			//mv.setViewName("users/create");
+			return mv;
+			
+			//return new ModelAndView("user-new");
+		}
 		ModelAndView mv=new ModelAndView();
 		String message="New user "+ users.getUser()+"was successfully created.";
 		uService.createUser(users);
@@ -51,6 +67,7 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("message",message);
 		return mv;
 	}
+	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView userListPage() {
