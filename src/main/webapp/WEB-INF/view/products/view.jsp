@@ -4,7 +4,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
             <div class="container">
-                <div class="col xs-12">
+            <div class="row">
+                <div class="col-sm">
                 <a href="${pageContext.request.contextPath}/products/create.html">Add A New Product</a>
                 	<br/>
 				<form:form method="POST" modelAttribute="productSearch"	action="${pageContext.request.contextPath}/products/view">
@@ -25,7 +26,7 @@
 				</form:form>
 					</div>
 					<br/>
-                        <table class="table">
+                        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">Part Number</th>
@@ -56,9 +57,9 @@
                                     </tr>
                                 </c:forEach>
                             </table>
-                           
+                           </div>
                 </div>
-				<div class="col xs-12">
+				<%---<div class="col xs-12">
 			 		<nav aria-label="...">
 					  <ul class="pagination pagination-md justify-content-center">
 					    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
@@ -72,5 +73,12 @@
 					    </li>
 					  </ul>
 					</nav>
-				</div>   
-			</div> 
+				</div>    --%>	
+			<script>
+			$(document).ready(function() {
+			    $('#table').DataTable( {
+			        select: false,
+			        searching: false
+			    } );
+			} );
+			</script>

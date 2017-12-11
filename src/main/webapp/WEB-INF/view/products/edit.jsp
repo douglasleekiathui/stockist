@@ -61,6 +61,10 @@ action="${pageContext.request.contextPath}/products/edit/${product.productNo}.ht
 				<td><form:errors path="minQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
+				<td>Primary Supplier</td>
+				<td><form:input path="primarySupplier" readOnly="true" class="form-control"  /></td>
+			</tr>
+			<tr>
 				<td>Reorder Quantity</td>
 				<td><form:input path="reorderQty"  class="form-control" type="number"  required="required" /></td>
 				<td><form:errors path="reorderQty" cssStyle="color: red;" /></td>

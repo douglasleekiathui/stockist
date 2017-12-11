@@ -29,6 +29,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService pService;
+	
+	//@Autowired
+	//private SupplierService sService;
 
 	@Autowired
 	private ProductValidator pValidator;
@@ -40,7 +43,7 @@ public class ProductController {
 
 	@RequestMapping(value="/view",method = RequestMethod.GET)
 	public ModelAndView viewProductsPage() {
-		int noOfItemsPerPage = 30;
+		int noOfItemsPerPage = 99999;
 		int start = 0;
 		int end = noOfItemsPerPage;
 		int noOfPages = 0 ;
@@ -63,7 +66,7 @@ public class ProductController {
 	
 	@RequestMapping(value="/view/{pageNo}",method = RequestMethod.GET)
 	public ModelAndView viewProductsPage(@PathVariable int pageNo) {
-		int noOfItemsPerPage = 30;
+		int noOfItemsPerPage = 99999;
 		int start = 0;
 		int end = noOfItemsPerPage;
 		int noOfPages = 0 ;
@@ -86,7 +89,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/view", method = RequestMethod.POST )
 	public ModelAndView searchProductByCriteria(@ModelAttribute ProductSearch productSearch) {
-		int noOfItemsPerPage = 30;
+		int noOfItemsPerPage = 99999;
 		int start = 0;
 		int end = noOfItemsPerPage;
 		int noOfPages = 0 ;
@@ -168,13 +171,15 @@ public class ProductController {
 	public ModelAndView editProductPage(@PathVariable String productNo) {
 		ModelAndView mav = new ModelAndView("edit");
 		Product product = pService.findProduct(productNo);
+		//ArrayList<Supplier> supplier = sService.findAllSuppliers();
+		//mav.addObject("supplier", supplier);
 		mav.addObject("product", product);
 		mav.setViewName("/products/edit");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/edit/{productNo}", method = RequestMethod.POST)
-	public ModelAndView editProductPage(@ModelAttribute @Valid Product product, BindingResult result,
+	public ModelAndView editProductPage(@ModelAttribute @Valid Product product,  BindingResult result,
 			@PathVariable String productNo, final RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
         	ModelAndView mav = new ModelAndView("edit");

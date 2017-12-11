@@ -4,6 +4,8 @@
 <html>
 <head runat="server">
     <!--include-->
+<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"  rel="stylesheet" />
+<link href="https://cdn.datatables.net/select/1.2.4/css/select.bootstrap4.min.css"  rel="stylesheet" />
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
                 crossorigin="anonymous">
          
@@ -13,6 +15,9 @@
                     crossorigin="anonymous"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
                     crossorigin="anonymous"></script>
+				<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>			
+			<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>		
+			<script src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>	
     <link href="css/master.css" rel="stylesheet" />
 
     <title></title>
@@ -25,6 +30,6 @@
         <div class="container text-center" >
             
             <h1>Team4 </h1>
-            <p>Stockist Inventory Managemnt System</p>
+            <p>Stockist Inventory Management System</p>
         </div>
     </div>
