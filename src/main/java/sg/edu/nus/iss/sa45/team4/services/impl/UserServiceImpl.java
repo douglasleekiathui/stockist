@@ -14,7 +14,7 @@ import sg.edu.nus.iss.sa45.team4.services.UserService;
 
 
 @Service
-public class UserServiceImpl2 implements UserService{
+public class UserServiceImpl implements UserService{
 	
 	@Resource
 	private UserRepository UserRepository;

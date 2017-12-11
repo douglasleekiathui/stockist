@@ -17,6 +17,8 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -29,6 +31,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 @SpringBootApplication(scanBasePackages = "sg.edu.nus.iss.sa45.team4")
 @EnableWebMvc
@@ -44,8 +49,8 @@ public class StockistApplication {
 
 	@Resource(name="")
 	private Environment env;
-
 	
+
 	//property files-----------------------------------------------------------
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
@@ -80,7 +85,7 @@ public class StockistApplication {
 		source.setCacheSeconds(0);
 		return source;
 	}
-	
+
 
 	//jasper reports------------------------------------------------------------
 	 @Bean

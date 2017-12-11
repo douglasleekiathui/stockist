@@ -10,7 +10,7 @@
 	href="${ss}" />
 <dec:head />
 </head>
-<body>
+<body >
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 180; border: 1" valign="top">
@@ -28,7 +28,8 @@
 				</div>
 			</td>
 		</tr>
-	</table>
+	</table> 
+	
 	
 	<!-- ======== Footer ======== -->
 				<div id="footer" align="center">
@@ -40,7 +41,7 @@
             Singapore<br />
             Infolink:+65-162093<br />
             E-mail:  isstraining@nus.edu.sg
-         </small>
+         </small> 
 				</div>
 </body>
 </html>

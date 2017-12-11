@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +24,7 @@ public class Supplier {
 	@Column(name="record_status")
 	private int recordStatus;
 	
-	@OneToMany(mappedBy="primarySupplier")
+	@OneToMany(mappedBy="primarySupplier",fetch=FetchType.EAGER)
 	private Set<Product> products;
 
 
