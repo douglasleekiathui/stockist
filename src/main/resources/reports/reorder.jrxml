@@ -12,7 +12,7 @@
   
   <!-- fields to be used -->
     <field name="primarySupplier" class="java.lang.String">
-        <fieldDescription><![CDATA[primarySupplier]]></fieldDescription>
+        <fieldDescription><![CDATA[primarySupplier.supplierName]]></fieldDescription>
     </field>
     <field name="productNo" class="java.lang.String">
         <fieldDescription><![CDATA[productNo]]></fieldDescription>
@@ -42,18 +42,21 @@
  		<title>
 		<band height="90" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="400" height="30" />
+				<reportElement x="0" y="0" width="200" height="30" />
 				<textElement>
 				<font size= "15" />
 				</textElement>
-				<text><![CDATA[Inventory Reorder Report]]></text>
+				<text><![CDATA[Inventory Reorder Report:]]></text>
 			</staticText>
-<!--
+
 			<textField>
-				<reportElement x="300" y="0" width="300" height="15" />
+				<reportElement x="180" y="0" width="300" height="30" />
+				<textElement>
+				<font size= "15" />
+				</textElement>
 				<textFieldExpression><![CDATA[$F{primarySupplier}]]></textFieldExpression>
 			</textField>
--->
+
 		 	<staticText>
 				<reportElement x="0" y="50" width="70" height="30" />
 				<text><![CDATA[Printed On:]]></text>

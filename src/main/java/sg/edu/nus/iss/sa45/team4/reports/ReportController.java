@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.sa45.team4.reports;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
+
+import sg.edu.nus.iss.sa45.team4.model.Product;
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
@@ -37,7 +41,9 @@ public class ReportController {
 		view.setApplicationContext(appContext);
 
 		Map<String, Object> params = new HashMap<>();
-		params.put("datasource", productService.findProductsBySupplier(s));
+		List<Product> datasource=productService.findProductsBySupplier(s);
+		Collections.sort(datasource,new ReorderComparatorImpl());
+		params.put("datasource", datasource);
 		params.put("s", s);
 
 		return new ModelAndView(view, params);

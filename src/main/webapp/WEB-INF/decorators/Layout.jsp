@@ -1,21 +1,22 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="dec"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-
+<%@include file="Header.jsp"%>
 <c:url value="/css/simple.css" var="ss"/>
 <link rel="STYLESHEET" type="text/css"
 	href="${ss}" />
-<tiles:insertAttribute name="header" />
+<dec:head />
 </head>
-<body>
+<body >
 	<table style="width: 100%">
 		<tr>
 			<td style="width: 180; border: 1" valign="top">
 				<div>
 					
-					<tiles:insertAttribute name="menu" />
+					<%@ include file="Menu.jsp"%>
 				</div>
 			</td>
 			<td>
@@ -23,11 +24,12 @@
 					<h3>
 						<spring:message code="${bodyTitle}" />
 					</h3>
-					<tiles:insertAttribute name="body" />
+					<dec:body />
 				</div>
 			</td>
 		</tr>
-	</table>
+	</table> 
+	
 	
 	<!-- ======== Footer ======== -->
 				<div id="footer" align="center">
@@ -39,7 +41,7 @@
             Singapore<br />
             Infolink:+65-162093<br />
             E-mail:  isstraining@nus.edu.sg
-         </small>
+         </small> 
 				</div>
 </body>
 </html>
