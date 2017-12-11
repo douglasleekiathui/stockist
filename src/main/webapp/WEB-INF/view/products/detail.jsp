@@ -22,6 +22,7 @@ input:read-only{
 
         <body>
 <h3>Detail Product Page</h3>
+//
 	<table class="table">
 	<tr><td> Product No: ${product.productNo}</td></tr> 
 	<tr><td>Product Description:  ${product.productDescription}</tr>
