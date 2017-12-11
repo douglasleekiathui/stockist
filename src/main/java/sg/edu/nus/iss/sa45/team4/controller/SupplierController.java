@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.t4.exception.SupplierNotFound;
-import com.t4.exception.UserNotFound;
 
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
@@ -65,7 +64,9 @@ public class SupplierController {
 		ModelAndView mv=new ModelAndView();
 		String message="New Supplier "+ supplier.getSupplierName()+"was successfully created.";
 		sService.createSupplier(supplier);
-		mv.setViewName("suppliers/list");
+		mv.setViewName("suppliers/supplier-list");
+		List<Supplier> sList = sService.findAllSuppliers();
+		mv.addObject("sList", sList);
 		redirectAttributes.addFlashAttribute("message",message);
 		return mv;
 	}
@@ -93,7 +94,7 @@ public class SupplierController {
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public ModelAndView editSupplier(@ModelAttribute @Valid Supplier supplier, BindingResult result, @PathVariable String id,
-			final RedirectAttributes redirectAttributes) throws UserNotFound {
+			final RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors())
 			return new ModelAndView("supplier-edit");

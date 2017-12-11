@@ -56,12 +56,25 @@ public class UserServiceImpl implements UserService{
 		UserRepository.delete(User);
 	}
 	
+	
 	@Transactional
 	public User authenticate(String uname, String pwd)
 	{
 		User u= UserRepository.findUserByNamePwd(uname, pwd);
 		return u;
 	}
-
+	
+	@Override
+	@Transactional
+	public String authenticateUser(String user, String password)
+	{
+		User u = UserRepository.findOne(user);
+		if(u == null)
+			return "no user found";
+		else if (u.getPassword()==password)
+			return "authenticated";
+		else
+			return "incorrect password";
+	}
 
 }

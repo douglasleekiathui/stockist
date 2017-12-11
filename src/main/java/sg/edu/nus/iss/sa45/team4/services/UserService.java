@@ -19,4 +19,5 @@ public interface UserService {
 	
 	User authenticate(String uname, String pwd);
 
+	String authenticateUser(String user, String password);
 }

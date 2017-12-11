@@ -13,10 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import sg.edu.nus.iss.sa45.team4.services.UserService;
 
-@Controller
+//@Controller
 public class PageController {
 	
-	@Autowired
+	/*@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = { "/", "/public**" }, method = RequestMethod.GET)
@@ -89,6 +89,6 @@ public class PageController {
 		model.setViewName("denied");
 		return model;
 
-	}
+	}*/
 
 }
