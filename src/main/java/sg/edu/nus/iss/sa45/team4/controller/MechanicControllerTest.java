@@ -68,6 +68,8 @@ class MechanicProductControllerTest {
 		
 		Integer usedQuantity = Integer.parseInt(usedQuantityTextBox);
 		
+		//123
+		
 		Date today = new Date();
 				
 		Transaction tr = new Transaction();
