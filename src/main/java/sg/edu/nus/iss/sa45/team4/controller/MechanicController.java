@@ -85,7 +85,7 @@ class MechanicProductControllerTest {
 		tr.setCreatedFor(customerName);
 		tr.setTransactionDate(today);
 		tr.setTransactionType("WO");
-		
+		//
 		
 		tl.setPostedQty((-usedQuantity));
 		tl.setProductNo(productNo);
@@ -100,7 +100,7 @@ class MechanicProductControllerTest {
 		String message = "Record done !.";		
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
-	}
+	}//
 	
 	@RequestMapping(value = "/viewHistory/{productNo}", method = RequestMethod.GET)
 	public ModelAndView viewHistoryPage(@PathVariable String productNo) {
