@@ -22,7 +22,7 @@
                 <div class="col-sm-6">
 <h5>Detail Product Page</h5>
 	<table class="table">
-	<tr><td> Product No: <td>${product.productNo}</td></td></tr> 
+	<tr><td> Product No: <td>${product.productNo}</td></tr> 
 	<tr><td>Product Description: <td>  ${product.productDescription}</td></tr>
 	<tr><td>Dimension: <td> ${product.dimension}</td></tr>
 	<tr><td>Manufacturer: <td>  ${product.manufacturer}</td></tr>
