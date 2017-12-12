@@ -34,7 +34,12 @@
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.record_status" /></td>
-				<td><form:input path="recordStatus" class="form-control"/></td>
+				<td>
+				<select class="custom-select" name="recordStatus" id="recordStatus">
+				  <option value="0" ${supplier.recordStatus == "0" ? 'selected="selected"' : ''}>0</option>
+				  <option value="1" ${supplier.recordStatus == "1" ? 'selected="selected"' : ''}>1</option>
+				</select>
+				</td>
 				<td><form:errors path="recordStatus" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
