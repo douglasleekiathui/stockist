@@ -19,9 +19,8 @@ public class AdminOrderValidator implements Validator {
 	@Override
 	public void validate(Object arg0, Errors arg1) {
 		Transaction tx = (Transaction) arg0;
-
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "transactionDate", "Purchase date is required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "createdFor", "Supplier is required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "transactionDate","","Purchase date is required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "createdFor","","Supplier is required");
 		checkQtyIsGreaterThanZero(tx, arg1);
 
 	}
