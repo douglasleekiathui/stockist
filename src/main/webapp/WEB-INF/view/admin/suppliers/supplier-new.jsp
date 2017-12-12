@@ -6,7 +6,7 @@
 
 <h3>New Supplier Page</h3>
 <form:form method="POST" commandName="supplier"
-	action="${pageContext.request.contextPath}/suppliers/create.html">
+	action="${pageContext.request.contextPath}/admin/suppliers/create.html">
 	<form:errors/>
 	<table>
 		<tbody>
