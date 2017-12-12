@@ -50,7 +50,7 @@ class MechanicProductControllerTest {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView productsListPage() {
-		ModelAndView mav = new ModelAndView("mechanic/mechanic-products-list");
+		ModelAndView mav = new ModelAndView("/mechanic/mechanic-products-list");
 		ArrayList<Product> productsList = (ArrayList<Product>) pService.findAllProducts();
 		mav.addObject("productsList", productsList);
 		return mav;
@@ -67,7 +67,7 @@ class MechanicProductControllerTest {
 		tx.setTransactionLines(tlList);
 		tl.setProductNo(p.getProductNo());
 		tl.setTransaction(tx);
-		ModelAndView mav = new ModelAndView("mechanic/mechanic-record-usage", "tx", tx);
+		ModelAndView mav = new ModelAndView("/mechanic/mechanic-record-usage", "tx", tx);
 		mav.addObject("p", p);
 		
 		return mav;
@@ -79,7 +79,7 @@ class MechanicProductControllerTest {
 			final RedirectAttributes redirectAttributes) {
 		
 		if (result.hasErrors())
-			return new ModelAndView("mechanic/mechanic-record-usage");
+			return new ModelAndView("/mechanic/mechanic-record-usage");
 		
 		Date today = new Date();		
 		tx.setCreatedBy("mech1");
@@ -96,7 +96,7 @@ class MechanicProductControllerTest {
 	
 	@RequestMapping(value = "/viewHistory/{productNo}", method = RequestMethod.GET)
 	public ModelAndView viewHistoryPage(@PathVariable String productNo) {
-		ModelAndView mav = new ModelAndView("mechanic/mechanic-view-history");		
+		ModelAndView mav = new ModelAndView("/mechanic/mechanic-view-history");		
 		ArrayList<Transaction> tList = new ArrayList<Transaction>();			
 		tList = tService.findAllTransactions();
 		

@@ -24,10 +24,16 @@ import sg.edu.nus.iss.sa45.team4.services.UserService;
 public class SecurityController {
 
 	@RequestMapping(value = { "", "home" }, method = RequestMethod.GET)
-	public String login() {
+	public String home() {
 		return "home";
 	}
 
+	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+
+	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -42,7 +42,7 @@ public class AdminSupplierController {
 	{
 		Supplier supplier = new Supplier();
 		ModelAndView mv=new ModelAndView("supplier-new","suppliers",supplier);
-		mv.setViewName("admin/suppliers/supplier-new");
+		mv.setViewName("/admin/suppliers/supplier-new");
 		sService.createSupplier(supplier);
 		mv.addObject("supplier", supplier);
 		return mv;
@@ -53,7 +53,7 @@ public class AdminSupplierController {
 			final RedirectAttributes redirectAttributes)
 	{
 		if(result.hasErrors()) {
-			ModelAndView mv=new ModelAndView("admin/suppliers/supplier-new");
+			ModelAndView mv=new ModelAndView("/admin/suppliers/supplier-new");
 			return mv;
 		}
 		ModelAndView mv=new ModelAndView();
@@ -78,7 +78,7 @@ public class AdminSupplierController {
 
 	@RequestMapping(value = "/edit/{supplierNo}", method = RequestMethod.GET)
 	public ModelAndView editSupplierPage(@PathVariable String supplierNo) {
-		ModelAndView mv = new ModelAndView("admin/suppliers/supplier-edit");
+		ModelAndView mv = new ModelAndView("/admin/suppliers/supplier-edit");
 		Supplier supplier = sService.findSupplier(supplierNo);
 		mv.addObject("supplier", supplier);
 		return mv;
@@ -89,7 +89,7 @@ public class AdminSupplierController {
 			final RedirectAttributes redirectAttributes) throws SupplierNotFoundException {
 
 		if (result.hasErrors())
-			return new ModelAndView("admin/suppliers/supplier-edit");
+			return new ModelAndView("/admin/suppliers/supplier-edit");
 
 		ModelAndView mav = new ModelAndView("admin/suppliers/supplier-list");
 		String message = "Supplier was successfully updated.";

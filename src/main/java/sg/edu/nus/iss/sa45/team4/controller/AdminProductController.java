@@ -40,45 +40,11 @@ public class AdminProductController {
 
 	@RequestMapping(value="/product-list",method = RequestMethod.GET)
 	public ModelAndView viewProductsPage() {
-		int noOfItemsPerPage = 99999;
-		int start = 0;
-		int end = noOfItemsPerPage;
-		int noOfPages = 0 ;
 		ProductSearch productSearch = new ProductSearch();
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Product> productList=(ArrayList<Product>) pService.findAllProducts();
-		productList.removeIf((Product p)-> p.getRecord_status() == 0);
-		noOfPages = (int)Math.floor(productList.size()/noOfItemsPerPage) + 1;
-		start = 0 * noOfItemsPerPage;
-		end = start + noOfItemsPerPage;
-		end = end > productList.size() ? productList.size() : end;
-		productList =  new ArrayList<Product>(productList.subList(start, end));
+		productList.removeIf((Product p)-> p.getRecord_status() == 0 || p.getProductNo().isEmpty() || p.getProductDescription().isEmpty() || p.getManufacturer().isEmpty());
 		mav.addObject("productList",productList);
-		mav.addObject("noOfPages",noOfPages);
-		mav.addObject("currentPage",1);
-		mav.addObject("productSearch",productSearch);
-		mav.setViewName("/admin/products/product-list");
-		return mav;
-	}
-	
-	@RequestMapping(value="/view/{pageNo}",method = RequestMethod.GET)
-	public ModelAndView viewProductsPage(@PathVariable int pageNo) {
-		int noOfItemsPerPage = 99999;
-		int start = 0;
-		int end = noOfItemsPerPage;
-		int noOfPages = 0 ;
-		ProductSearch productSearch = new ProductSearch();
-		ModelAndView mav = new ModelAndView();
-		ArrayList<Product> productList=(ArrayList<Product>) pService.findAllProducts();
-		productList.removeIf((Product p)-> p.getRecord_status() == 0);
-		noOfPages = (int)Math.floor(productList.size()/noOfItemsPerPage) + 1;
-		start = (pageNo - 1) * noOfItemsPerPage;
-		end = start + noOfItemsPerPage;
-		end = end > productList.size() ? productList.size() : end;
-		productList =  new ArrayList<Product>(productList.subList(start, end));
-		mav.addObject("productList",productList);
-		mav.addObject("noOfPages",noOfPages);
-		mav.addObject("currentPage",pageNo);
 		mav.addObject("productSearch",productSearch);
 		mav.setViewName("/admin/products/product-list");
 		return mav;
@@ -86,22 +52,20 @@ public class AdminProductController {
 	
 	@RequestMapping(value = "/product-list", method = RequestMethod.POST )
 	public ModelAndView searchProductByCriteria(@ModelAttribute ProductSearch productSearch) {
-		int noOfItemsPerPage = 99999;
-		int start = 0;
-		int end = noOfItemsPerPage;
-		int noOfPages = 0 ;
 		ModelAndView mav = new ModelAndView("product-list");
 		ArrayList<Product> productList=(ArrayList<Product>) pService.findAllProducts();
+		productList.removeIf((Product p)-> p.getRecord_status() == 0 || p.getProductNo().isEmpty() || p.getProductDescription().isEmpty() || p.getManufacturer().isEmpty());
 		if(!productSearch.getSearchText().isEmpty() &&
 		   !productSearch.getSearchType().isEmpty())
 		{
+			productSearch.setSearchText(productSearch.getSearchText().trim());
 			if(productSearch.getSearchType().equalsIgnoreCase("productNo"))
 			{
 				productList.removeIf((Product p)-> !p.getProductNo().toLowerCase().contains(productSearch.getSearchText().toLowerCase()));
 			}
 			else if(productSearch.getSearchType().equalsIgnoreCase("productDescription"))
 			{
-				productList.removeIf((Product p)-> !p.getProductDescription().toLowerCase().contains(productSearch.getSearchText().toLowerCase()));
+				productList.removeIf((Product p)-> !p.getProductDescription().isEmpty() && !p.getProductDescription().toLowerCase().contains(productSearch.getSearchText().toLowerCase()));
 			}
 			else if(productSearch.getSearchType().equalsIgnoreCase("manufacturer"))
 			{
@@ -112,15 +76,7 @@ public class AdminProductController {
 				productList.removeIf((Product p)-> !p.getShelfLocation().toLowerCase().contains(productSearch.getSearchText().toLowerCase()));
 			}
 		}
-		productList.removeIf((Product p)-> p.getRecord_status() == 0);
-		noOfPages = (int)Math.floor(productList.size()/noOfItemsPerPage) + 1;
-		start = 0 * noOfItemsPerPage;
-		end = start + noOfItemsPerPage;
-		end = end > productList.size() ? productList.size() : end;
-		productList =  new ArrayList<Product>(productList.subList(start, end));
 		mav.addObject("productList",productList);
-		mav.addObject("noOfPages",noOfPages);
-		mav.addObject("currentPage",1);
 		mav.addObject("productSearch",productSearch);
 		mav.setViewName("/admin/products/product-list");
 		return mav;

@@ -2,37 +2,25 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<%-- <html>
-
-<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/authenticate" >
-	<table class="framed" >
-		<tr>
-			<td>User:
-			<spring:message code="fieldLabel.username" /></td>
-			<td colspan="3"><form:input path="user" size="40" /></td>
-		</tr>
-		<tr>
-			<td>Password:<spring:message code="fieldLabel.password" /></td>
-			<td colspan="3"><form:password path="password" size="40" /></td>
-		</tr>
-		<tr>
-			<td colspan="4">&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>
-			<form:button name="submit" type="submit" value="s">Login</form:button>
-				</td>
-		</tr>
-	</table>
-</form:form>
-</html> --%>
-
-
-
 <%@page session="true"%>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+	
 <title>Login Page</title>
 <style>
 .error {
@@ -56,7 +44,7 @@
 }
 
 #login-box {
-	width: 300px;
+	width: 350px;
 	padding: 20px;
 	margin: 100px auto;
 	background: #fff;
@@ -68,11 +56,9 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>${menu}</h1>
-
 	<div id="login-box">
 
-		<h2>Enter your Username and Password</h2>
+		<h3 class="text-center mb-3">LOGIN FORM</h6>
 
 		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
@@ -81,21 +67,20 @@
 			<div class="msg">${msg}</div>
 		</c:if>
 
-		<form name='loginForm'
-			action="<c:url value='/j_spring_security_check' />" method='POST'>
+		<form name='loginForm' action="login" method='POST'>
 
 			<table>
-				<tr>
-					<td>User:</td>
-					<td><input type='text' name='username'></td>
+				<tr class="mb-2">
+					<td class="p2">User:</td>
+					<td class="p2"><input type='text' name='username' class="form-control"  required="required"></td>
 				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type='password' name='password' /></td>
+				<tr class="mb-2">
+					<td class="p2">Password:</td>
+					<td class="p2"><input type='password' name='password' class="form-control" required="required" /></td>
 				</tr>
-				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
+				<tr class="mb-2">
+					<td colspan='2'class="text-center p-2"><input name="submit" type="submit" 
+						value="submit" class="btn btn-primary"  /></td>
 				</tr>
 			</table>
 

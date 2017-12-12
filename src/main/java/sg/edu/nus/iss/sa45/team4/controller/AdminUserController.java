@@ -43,7 +43,7 @@ public class AdminUserController {
 		User user = new User();
 		ModelAndView mv=new ModelAndView("user-new","users",user);
 		mv.addObject("user", user);
-		mv.setViewName("admin/users/user-new");
+		mv.setViewName("/admin/users/user-new");
 		return mv;
 	}
 	
@@ -52,7 +52,7 @@ public class AdminUserController {
 			final RedirectAttributes redirectAttributes)
 	{
 		if(result.hasErrors()) {
-			ModelAndView mv=new ModelAndView("admin/users/user-new");
+			ModelAndView mv=new ModelAndView("/admin/users/user-new");
 			return mv;
 		}
 		ModelAndView mv=new ModelAndView();

@@ -104,6 +104,7 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 				.antMatchers("/admin/**").access("hasAuthority('ADMIN')")
 				.and().formLogin()
+//				.loginPage("/login")
 				.defaultSuccessUrl("/home")
 				.failureUrl("/login?error")
 				.and().logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true)
