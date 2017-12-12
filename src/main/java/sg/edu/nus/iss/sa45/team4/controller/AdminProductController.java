@@ -24,7 +24,7 @@ import sg.edu.nus.iss.sa45.team4.validator.AdminProductValidator;
 
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/admin/products")
 public class AdminProductController {
 	
 	@Autowired
@@ -56,7 +56,7 @@ public class AdminProductController {
 		mav.addObject("noOfPages",noOfPages);
 		mav.addObject("currentPage",1);
 		mav.addObject("productSearch",productSearch);
-		mav.setViewName("/products/view");
+		mav.setViewName("/admin/products/view");
 		return mav;
 	}
 	
@@ -79,7 +79,7 @@ public class AdminProductController {
 		mav.addObject("noOfPages",noOfPages);
 		mav.addObject("currentPage",pageNo);
 		mav.addObject("productSearch",productSearch);
-		mav.setViewName("/products/view");
+		mav.setViewName("/admin/products/view");
 		return mav;
 	}
 	
@@ -121,7 +121,7 @@ public class AdminProductController {
 		mav.addObject("noOfPages",noOfPages);
 		mav.addObject("currentPage",1);
 		mav.addObject("productSearch",productSearch);
-		mav.setViewName("/products/view");
+		mav.setViewName("/admin/products/view");
 		return mav;
 	}
 	
@@ -130,7 +130,7 @@ public class AdminProductController {
 	public ModelAndView newProductPage() {
 		Product p = new Product();
 		ModelAndView mav = new ModelAndView("create", "products",p);
-		mav.setViewName("/products/create");
+		mav.setViewName("/admin/products/create");
 		mav.addObject("product", p);
 		return mav;
 	}
@@ -141,14 +141,14 @@ public class AdminProductController {
 		 if (result.hasErrors()) {
 	        	ModelAndView mav = new ModelAndView("create");
 	    		mav.addObject("product", product);
-	    		mav.setViewName("/products/create");
+	    		mav.setViewName("/admin/products/create");
 	            return mav;
 	        }
 		ModelAndView mav = new ModelAndView();
 		String message ="New Product" + product.getProductNo() +" was successfully created.";
 		pService.createProduct(product);
 		product.setRecord_status(1);
-		mav.setViewName("redirect:/products/view");
+		mav.setViewName("redirect:/admin/products/view");
 		
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
@@ -159,7 +159,7 @@ public class AdminProductController {
 		ModelAndView mav = new ModelAndView("detail");
 		Product product = pService.findProduct(productNo);
 		mav.addObject("product", product);
-		mav.setViewName("/products/detail");
+		mav.setViewName("/admin/products/detail");
 		return mav;
 	}
 	
@@ -168,7 +168,7 @@ public class AdminProductController {
 		ModelAndView mav = new ModelAndView("edit");
 		Product product = pService.findProduct(productNo);
 		mav.addObject("product", product);
-		mav.setViewName("/products/edit");
+		mav.setViewName("/admin/products/edit");
 		return mav;
 	}
 	
@@ -178,11 +178,11 @@ public class AdminProductController {
         if (result.hasErrors()) {
         	ModelAndView mav = new ModelAndView("edit");
     		mav.addObject("product", product);
-    		mav.setViewName("/products/edit");
+    		mav.setViewName("/admin/products/edit");
             return mav;
         }
         
-		ModelAndView mav = new ModelAndView("redirect:/products/view");
+		ModelAndView mav = new ModelAndView("redirect:/admin/products/view");
 		pService.changeProduct(product);
 		String message = "Product was successfully updated";
 		redirectAttributes.addFlashAttribute("message", message);
@@ -193,7 +193,7 @@ public class AdminProductController {
 	public ModelAndView deleteProductPage(@PathVariable String productNo, 
 			final RedirectAttributes redirectAttributes) {
 
-		ModelAndView mav = new ModelAndView("redirect:/products/view");
+		ModelAndView mav = new ModelAndView("redirect:/admin/products/view");
 		Product product = pService.findProduct(productNo);
 		product.setRecord_status(0);
 		pService.changeProduct(product);
