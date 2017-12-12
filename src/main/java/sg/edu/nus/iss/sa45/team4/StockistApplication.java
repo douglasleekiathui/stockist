@@ -95,16 +95,17 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 		.authoritiesByUsernameQuery(
 				"select user, 'ROLE_'+user_role from users where user=?");
     }
-
+	
+			// the / in front of the urls is necessary
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.anyRequest().authenticated()
 				.antMatchers("/login**","/").permitAll()
-				.antMatchers("/products/create","/suppliers/**","/users/**").access("hasAuthority('ADMIN')")
+				.anyRequest().authenticated()
+				.antMatchers("/admin/**").access("hasAuthority('ADMIN')")
 				.and().formLogin()
+				.defaultSuccessUrl("/home")
 				.failureUrl("/login?error")
-				.defaultSuccessUrl("/products/view.jsp")
 				.and().logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true)
 				.and().exceptionHandling().accessDeniedPage("/403");
 	}

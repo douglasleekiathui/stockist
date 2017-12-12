@@ -9,17 +9,22 @@
 		<put-attribute name="body" value="" />
 	</definition>
 	<!-- all mappings -->
-	<definition name="/products/view" extends="defaulttemplate">
-		<put-attribute name="body" value="/WEB-INF/view/products/view.jsp"></put-attribute>
+	<definition name="*" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/{0}.jsp"></put-attribute>
 	</definition>
-	<definition name="/products/create" extends="defaulttemplate">
-		<put-attribute name="body" value="/WEB-INF/view/products/create.jsp"></put-attribute>
+	
+	
+	<definition name="/admin/products/view" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/admin/products/view.jsp"></put-attribute>
 	</definition>
-	<definition name="/products/detail" extends="defaulttemplate">
-		<put-attribute name="body" value="/WEB-INF/view/products/detail.jsp"></put-attribute>
+	<definition name="/admin/products/create" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/admin/products/create.jsp"></put-attribute>
 	</definition>
-	<definition name="/products/edit" extends="defaulttemplate">
-		<put-attribute name="body" value="/WEB-INF/view/products/edit.jsp"></put-attribute>
+	<definition name="/admin/products/detail" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/admin/products/detail.jsp"></put-attribute>
+	</definition>
+	<definition name="/admin/products/edit" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/admin/products/edit.jsp"></put-attribute>
 	</definition>
 	<definition name="/products/*" extends="defaulttemplate">
 		<put-attribute name="body" value="/WEB-INF/view/products/{1}.jsp"></put-attribute>

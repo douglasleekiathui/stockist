@@ -8,6 +8,6 @@
 <title>home</title>
 </head>
 <body>
-This is home
+<span style="margin:auto;">This is home</span>
 </body>
 </html>

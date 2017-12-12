@@ -51,7 +51,7 @@ public class AdminOrderController {
 	// view products to be re-ordered
 	@RequestMapping(value = "/{supplier}", method = RequestMethod.GET)
 	public ModelAndView showProduct(@PathVariable("supplier") String supplier) {
-		ModelAndView mav = new ModelAndView("admin/orders/view");
+		ModelAndView mav = new ModelAndView("admin/orders/order-view");
 		List<Product> products;
 		if (supplier.equalsIgnoreCase("all")) {
 			products = pService.getReorderProductByPage();
@@ -83,7 +83,7 @@ public class AdminOrderController {
 		tl.setProductNo(p.getProductNo());
 		tl.setTransaction(tx);
 
-		ModelAndView mav = new ModelAndView("admin/orders/new-po-tx", "tx", tx);
+		ModelAndView mav = new ModelAndView("admin/orders/order-new", "tx", tx);
 		mav.addObject("p", p);
 		return mav;
 	}
@@ -123,7 +123,7 @@ public class AdminOrderController {
 		}
 		tx.setTransactionLines(tlList);
 
-		ModelAndView mav = new ModelAndView("admin/orders/new-po-tx", "tx", tx);
+		ModelAndView mav = new ModelAndView("admin/orders/order-new", "tx", tx);
 		return mav;
 	}
 

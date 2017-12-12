@@ -2,17 +2,17 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<html>
+<%-- <html>
 
 <form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/authenticate" >
 	<table class="framed" >
 		<tr>
 			<td>User:
-			<%-- <spring:message code="fieldLabel.username" /> --%></td>
+			<spring:message code="fieldLabel.username" /></td>
 			<td colspan="3"><form:input path="user" size="40" /></td>
 		</tr>
 		<tr>
-			<td>Password:<%-- <spring:message code="fieldLabel.password" /> --%></td>
+			<td>Password:<spring:message code="fieldLabel.password" /></td>
 			<td colspan="3"><form:password path="password" size="40" /></td>
 		</tr>
 		<tr>
@@ -26,11 +26,11 @@
 		</tr>
 	</table>
 </form:form>
-</html>
+</html> --%>
 
 
 
-<%-- <%@page session="true"%>
+<%@page session="true"%>
 <html>
 <head>
 <title>Login Page</title>
@@ -106,4 +106,4 @@
 	</div>
 
 </body>
-</html> --%>
+</html>
