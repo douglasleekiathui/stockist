@@ -25,7 +25,7 @@ public class SecurityController {
 	
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String logic(Model model) {
-		return "redirect:/products/view";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)

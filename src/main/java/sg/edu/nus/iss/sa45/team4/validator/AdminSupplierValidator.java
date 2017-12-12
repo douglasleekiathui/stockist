@@ -16,12 +16,12 @@ import sg.edu.nus.iss.sa45.team4.model.Supplier;
 
 		@Override
 		public void validate(Object target, Errors errors) {
-			Supplier s= (Supplier) target;	
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierNo;","Supplier No Cannot be Empty");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierName","Supplier Name Cannot be Empty");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierContact","Supplier Contact Cannot be Empty");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierEmail","Supplier Role Cannot be Empty");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "recordStatus","Record Status Cannot be Empty");
+			Supplier s= (Supplier) target;			
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierNo"," ","Supplier No Cannot be Empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierName"," ","Supplier Name Cannot be Empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierContact"," ","Supplier Contact Cannot be Empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supplierEmail"," ","Supplier Role Cannot be Empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "recordStatus"," ","Record Status Cannot be Empty");
 			System.out.println(s.toString());
 		}
 

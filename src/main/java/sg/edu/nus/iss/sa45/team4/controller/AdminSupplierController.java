@@ -1,8 +1,6 @@
 package sg.edu.nus.iss.sa45.team4.controller;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import sg.edu.nus.iss.sa45.team4.exception.SupplierNotFound;
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 import sg.edu.nus.iss.sa45.team4.validator.AdminSupplierValidator;
 
+
 @Controller
-@RequestMapping("/suppliers")
+@RequestMapping("/admin/suppliers")
 public class AdminSupplierController {
 
 	@Autowired
@@ -42,26 +41,25 @@ public class AdminSupplierController {
 	{
 		Supplier supplier = new Supplier();
 		ModelAndView mv=new ModelAndView("supplier-new","suppliers",supplier);
+
 		mv.addObject("supplier", supplier);
-		mv.setViewName("/suppliers/supplier-new");
+		mv.setViewName("admin/suppliers/supplier-new");
 		return mv;
 	}
 	
 	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public ModelAndView createNewSupplier(@ModelAttribute Supplier supplier, BindingResult result, 
+	public ModelAndView createNewSupplier(@ModelAttribute @Valid Supplier supplier, BindingResult result, 
 			final RedirectAttributes redirectAttributes)
 	{
 		if(result.hasErrors()) {
-			ModelAndView mv=new ModelAndView("supplier-new");
+			ModelAndView mv=new ModelAndView("admin/suppliers/supplier-new");
 			return mv;
 		}
 		ModelAndView mv=new ModelAndView();
 		String message="New Supplier "+ supplier.getSupplierName()+"was successfully created.";
 		sService.createSupplier(supplier);
-		mv.setViewName("suppliers/supplier-list");
-		List<Supplier> sList = sService.findAllSuppliers();
-		mv.addObject("sList", sList);
-		redirectAttributes.addFlashAttribute("message",message);
+		mv.setViewName("redirect:/admin/suppliers/list");
+	    redirectAttributes.addFlashAttribute("message",message);
 		return mv;
 	}
 	
@@ -69,49 +67,44 @@ public class AdminSupplierController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView supplierListPage() {
 		ModelAndView mv = new ModelAndView("supplier-list");
-		List<Supplier> sList = sService.findAllSuppliers();
-		mv.addObject("sList", sList);
-		mv.setViewName("/suppliers/supplier-list");
-		return mv;
-	}
-
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editSupplierPage(@PathVariable String id) {
-		ModelAndView mv = new ModelAndView("supplier-edit");
-		Supplier supplier = sService.findSupplier(id);
-		mv.addObject("supplier", supplier);
 		ArrayList<Supplier> sList = sService.findAllSuppliers();
+		mv.setViewName("/admin/suppliers/supplier-list");
 		mv.addObject("sList", sList);
-		mv.setViewName("/suppliers/supplier-edit");
 		return mv;
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView editSupplier(@ModelAttribute @Valid Supplier supplier, BindingResult result, @PathVariable String id,
-			final RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/edit/{supplierNo}", method = RequestMethod.GET)
+	public ModelAndView editSupplierPage(@PathVariable String supplierNo) {
+		ModelAndView mv = new ModelAndView("admin/suppliers/supplier-edit");
+		Supplier supplier = sService.findSupplier(supplierNo);
+		mv.addObject("supplier", supplier);
+		return mv;
+	}
+
+	@RequestMapping(value = "/edit/{supplierNo}", method = RequestMethod.POST)
+	public ModelAndView editSupplier(@ModelAttribute @Valid Supplier supplier, BindingResult result, @PathVariable String supplierNo,
+			final RedirectAttributes redirectAttributes) throws SupplierNotFound {
 
 		if (result.hasErrors())
-			return new ModelAndView("supplier-edit");
+			return new ModelAndView("admin/suppliers/supplier-edit");
 
-		ModelAndView mav = new ModelAndView("redirect:suppliers/supplier-list");
+		ModelAndView mav = new ModelAndView("admin/suppliers/supplier-list");
 		String message = "Supplier was successfully updated.";
-
 		sService.changeSupplier(supplier);
-
+		mav.setViewName("redirect:/admin/suppliers/list");
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteSupplier(@PathVariable String id, final RedirectAttributes redirectAttributes)
-			 {
+	@RequestMapping(value = "/delete/{supplierNo}", method = RequestMethod.GET)
+	public ModelAndView deleteSupplier(@PathVariable String supplierNo, final RedirectAttributes redirectAttributes)
+			throws SupplierNotFound {
 
-		ModelAndView mv = new ModelAndView("redirect:/suppliers/list");
-		Supplier supplier = sService.findSupplier(id);
+		ModelAndView mv = new ModelAndView("redirect:/admin/suppliers/list");
+		Supplier supplier = sService.findSupplier(supplierNo);
 		supplier.setRecordStatus(0);
 		sService.changeSupplier(supplier);
 		String message = "The supplier" + supplier.getSupplierName() + " was successfully deleted.";
-
 		redirectAttributes.addFlashAttribute("message", message);
 		return mv;
 	}
@@ -120,7 +113,7 @@ public class AdminSupplierController {
 		ModelAndView mav = new ModelAndView();
 		ArrayList<Supplier> sList=(ArrayList<Supplier>) sService.findAllSuppliers();
 		mav.addObject("sList" , sList);
-		mav.setViewName("/home");
+		mav.setViewName("/welcome");
 		return mav;
 	}
 	

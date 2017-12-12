@@ -28,10 +28,6 @@ public class Supplier {
 	private Set<Product> products;
 
 
-
-
-
-
 	public int getRecordStatus() {
 		return recordStatus;
 	}
@@ -40,6 +36,9 @@ public class Supplier {
 		this.recordStatus = recordStatus;
 	}
 
+	
+	
+	
 	public String getSupplierNo() {
 		return supplierNo;
 	}
