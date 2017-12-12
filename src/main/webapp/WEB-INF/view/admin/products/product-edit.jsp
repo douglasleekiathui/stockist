@@ -23,7 +23,7 @@
                 <div class="col-sm">
 <h5>Edit Product Page</h5>
 <form:form method="POST" modelAttribute="product" 
-action="${pageContext.request.contextPath}/admin/products/edit/${product.productNo}.html">
+action="${pageContext.request.contextPath}/admin/products/product-edit/${product.productNo}.html">
 	<table>
 		<tbody>
 		<tr>

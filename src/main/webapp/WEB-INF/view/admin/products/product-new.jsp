@@ -23,13 +23,12 @@
                 <div class="col-sm">
 <h5>Create New Product Page</h5>
 <form:form method="POST" modelAttribute="product"
-action="${pageContext.request.contextPath}/admin/products/create.html">
+action="${pageContext.request.contextPath}/admin/products/product-new.html">
 	<table>
 		<tbody>
 		<tr>
 				<td>Product No</td>
-				<td><form:input path="productNo" class="form-control"/></td>
-				<td><form:errors path="productNo" cssStyle="color: red;" /></td>
+				<td><form:input path="productNo" readOnly="true" class="form-control"/></td>
 			</tr>
 			<tr>
 				<td>Description</td>
@@ -87,6 +86,15 @@ action="${pageContext.request.contextPath}/admin/products/create.html">
 				<select class="custom-select" name="shelfLocation" id="shelfLocation">
 				  <option value="ONSITE" ${product.shelfLocation == "ONSITE" ? 'selected="selected"' : ''}>ONSITE</option>
 				  <option value="STORE" ${product.shelfLocation == "STORE" ? 'selected="selected"' : ''}>STORE</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+			<td>Record Status</td>
+			<td>
+				<select class="custom-select" name="record_status" id="record_status">
+				  <option value="0" ${product.record_status == "0" ? 'selected="selected"' : ''}>0</option>
+				  <option value="1" ${product.record_status == "1" ? 'selected="selected"' : ''}>1</option>
 				</select>
 				</td>
 			</tr>

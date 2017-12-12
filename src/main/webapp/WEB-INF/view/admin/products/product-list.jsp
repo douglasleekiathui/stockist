@@ -24,9 +24,9 @@
             <div class="container">
             <div class="row">
                 <div class="col-sm">
-                <a href="${pageContext.request.contextPath}/admin/products/create.html">Add A New Product</a>
+                <a href="${pageContext.request.contextPath}/admin/products/product-new.html">Add A New Product</a>
                 	<br/>
-				<form:form method="POST" modelAttribute="productSearch"	action="${pageContext.request.contextPath}/products/view">
+				<form:form method="POST" modelAttribute="productSearch"	action="${pageContext.request.contextPath}/products/product-list">
 	    			<div class="input-group">
 	     				 <form:input path="searchText" type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." />
 					<select class="custom-select" name="searchType" id="searchType">
@@ -38,7 +38,7 @@
 					<br/>
 	      					<span class="input-group-btn">
 	        					<button class="btn btn-primary" type="submit">Search By</button>
-	        					<a href ="${pageContext.request.contextPath}/admin/products/view" type="reset" class="btn btn-primary">Reset</a>
+	        					<a href ="${pageContext.request.contextPath}/admin/products/product-list" type="reset" class="btn btn-primary">Reset</a>
 	      					</span>
 	    			</div>
 				</form:form>
@@ -60,14 +60,14 @@
                                 </thead>
                                 <c:forEach var="p" items="${productList}">
                                     <tr>
-                                        <th> <a href="${pageContext.request.contextPath}/admin/products/detail/${p.productNo}.html">${p.productNo}</a></th>
+                                        <th> <a href="${pageContext.request.contextPath}/admin/products/product-detail/${p.productNo}.html">${p.productNo}</a></th>
                                         <td>${p.productDescription}</td>
                                         <td>${p.dimension}</td>
                                         <td>${p.manufacturer}</td>
                                         <td>${p.shelfLocation}</td>
                                         <td>${p.price}</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/admin/products/edit/${p.productNo}.html">Edit</a>
+                                            <a href="${pageContext.request.contextPath}/admin/products/product-edit/${p.productNo}.html">Edit</a>
                                         </td>
                                         <td>
                                             <a href="${pageContext.request.contextPath}/admin/products/delete/${p.productNo}.html">Delete</a>
