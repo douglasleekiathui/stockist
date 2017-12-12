@@ -85,6 +85,39 @@ public class TransactionServiceImpl implements TransactionService{
 	}
 
 	
+	public Transaction createTransaction_Mechanic(Transaction Transaction) {
+		
+		
+		Transaction tx=Transaction;
+		RunningNumber rn=runningNumberRepository.findOne("transactions");
+		int txNo=rn.getValue()+1;
+		rn.setValue(txNo);
+		runningNumberRepository.saveAndFlush(rn);
+		
+		String txNumber="T"+String.format("%04d", txNo);
+		tx.setTransactionNo(txNumber);
+		
+		int lineNo=0;
+		Iterator<TransactionLine> i= tx.getTransactionLines().iterator();
+		while(i.hasNext()) {
+			TransactionLine tl=i.next();
+			if(tl.getPostedQty()!=0) {
+				lineNo++;
+				tl.setTransactionNo(txNumber);
+				tl.setLineNo(lineNo);
+				tl.setTransaction(tx);
+			}else
+				i.remove();
+		}
+		TransactionRepository.saveAndFlush(tx);
+		for (TransactionLine tl: tx.getTransactionLines()) {
+			Product p= productRepository.findOne(tl.getProductNo());
+			p.setOnhandQty(p.getOnhandQty()-tl.getPostedQty());
+			transactionLineRepository.saveAndFlush(tl);
+			productRepository.saveAndFlush(p);
+		}
+		return tx;
+	}
 	@Override
 	@Transactional
 	public Transaction changeTransaction(Transaction Transaction) {

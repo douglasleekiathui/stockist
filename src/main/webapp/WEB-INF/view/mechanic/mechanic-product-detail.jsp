@@ -33,7 +33,7 @@
 	<tr><td>Price: <td> ${product.price} </td></tr>
 	<tr>
 	<td>
-	<a href ="${pageContext.request.contextPath}/mechanic//product-list" type="back" class="btn btn-primary">Back</a>
+	<a href ="${pageContext.request.contextPath}/mechanic/list.html" type="back" class="btn btn-primary">Back</a>
 	</td>
 	</tr>
 	</table>

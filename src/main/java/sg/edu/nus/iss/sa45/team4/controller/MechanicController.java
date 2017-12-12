@@ -85,7 +85,7 @@ class MechanicProductControllerTest {
 		tx.setCreatedBy("mech1");
 		tx.setTransactionDate(today);
 		tx.setTransactionType("WO");		
-		tService.createTransaction(tx);
+		tService.createTransaction_Mechanic(tx);
 		
 		ModelAndView mav = new ModelAndView("redirect:/mechanic/list");
 		
@@ -101,6 +101,14 @@ class MechanicProductControllerTest {
 		tList = tService.findAllTransactions();
 		
 		mav.addObject("tList", tList);	
+		return mav;
+	}
+	@RequestMapping(value = "/mechanic-product-detail/{productNo}", method = RequestMethod.GET)
+	public ModelAndView DetailProductPage(@PathVariable String productNo) {
+		ModelAndView mav = new ModelAndView("product-detail");
+		Product product = pService.findProduct(productNo);
+		mav.addObject("product", product);
+		mav.setViewName("/mechanic/mechanic-product-detail");
 		return mav;
 	}
 	

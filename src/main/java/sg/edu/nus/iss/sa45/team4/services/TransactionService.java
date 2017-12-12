@@ -16,4 +16,6 @@ public interface TransactionService {
 
 	void removeTransaction(Transaction Transaction);
 
+	Transaction createTransaction_Mechanic(Transaction tx);
+
 }
