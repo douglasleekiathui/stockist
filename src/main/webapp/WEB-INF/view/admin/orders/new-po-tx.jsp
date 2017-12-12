@@ -19,7 +19,7 @@
 						<div class="col-sm-6">
 <h3>Update Inventory Receipt/Purchase</h3>
 <table >
-<form:form method="POST" modelAttribute="tx" action="${pageContext.request.contextPath}/products/orders/new/p=${p.productNo}.html" >
+<form:form method="POST" modelAttribute="tx" action="${pageContext.request.contextPath}/admin/orders/new/p=${p.productNo}.html" >
 <tr>
 <td>Date: </td>
 <td><form:input type="date" path="transactionDate" class="form-control"/></td>

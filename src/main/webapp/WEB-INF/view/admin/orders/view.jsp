@@ -26,7 +26,7 @@
 <table>
 
 <c:if test="${s != null}">
-<a href=<c:url value="/products/orders/new/s=${s.supplierNo}"/>>Update new receipt or purchase</a>
+<a href=<c:url value="/admin/orders/new/s=${s.supplierNo}"/>>Update new receipt or purchase</a>
 <br/>
 	<spring:message code="supplierNo" />: ${s.supplierNo} 
 	<br/>
@@ -38,10 +38,10 @@
 <display:setProperty name="paging.banner.some_items_found" value="{0} {1} found <br/> Displaying {2} to {3}.<br/>" />
 <c:if test="${s == null}">
 	<display:column class="supplier" titleKey="supplierName" sortable="true">
-	<a href="<c:url value="/products/orders/${p.primarySupplier.supplierNo}.html" />">
+	<a href="<c:url value="/admin/orders/${p.primarySupplier.supplierNo}.html" />">
 	<c:out value="${p.primarySupplier.supplierName}" /></a></display:column>
 </c:if>
-    <display:column class="numeric" titleKey="displaytag.productNo" sortable="true"><a href = "<c:url value = "/products/orders/new/p=${p.productNo}.html"/>">
+    <display:column class="numeric" titleKey="displaytag.productNo" sortable="true"><a href = "<c:url value = "/admin/orders/new/p=${p.productNo}.html"/>">
     <c:out value="${p.productNo}"/></a></display:column>
     <display:column class="numeric" property="price" titleKey="displaytag.price" sortable="true"/>
     <display:column class="numeric" property="onhandQty" titleKey="displaytag.onhandQty"  sortable="true"/>

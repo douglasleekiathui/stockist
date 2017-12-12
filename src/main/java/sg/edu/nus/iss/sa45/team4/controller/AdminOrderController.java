@@ -28,7 +28,7 @@ import sg.edu.nus.iss.sa45.team4.services.TransactionService;
 import sg.edu.nus.iss.sa45.team4.validator.AdminOrderValidator;
 
 @Controller
-@RequestMapping("/products/orders")
+@RequestMapping("/admin/orders")
 public class AdminOrderController {
 
 	// business logic
@@ -51,7 +51,7 @@ public class AdminOrderController {
 	// view products to be re-ordered
 	@RequestMapping(value = "/{supplier}", method = RequestMethod.GET)
 	public ModelAndView showProduct(@PathVariable("supplier") String supplier) {
-		ModelAndView mav = new ModelAndView("products/orders/view");
+		ModelAndView mav = new ModelAndView("admin/orders/view");
 		List<Product> products;
 		if (supplier.equalsIgnoreCase("all")) {
 			products = pService.getReorderProductByPage();
@@ -66,7 +66,7 @@ public class AdminOrderController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showFirstProduct() {
-		return "forward:/products/orders/all";
+		return "forward:/admin/orders/all";
 	}
 
 	// create new purchase order for individual product
@@ -83,7 +83,7 @@ public class AdminOrderController {
 		tl.setProductNo(p.getProductNo());
 		tl.setTransaction(tx);
 
-		ModelAndView mav = new ModelAndView("products/orders/new-po-tx", "tx", tx);
+		ModelAndView mav = new ModelAndView("admin/orders/new-po-tx", "tx", tx);
 		mav.addObject("p", p);
 		return mav;
 	}
@@ -93,14 +93,14 @@ public class AdminOrderController {
 			final RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors())
-			return new ModelAndView("products/orders/new-po-tx");
+			return new ModelAndView("admin/orders/new-po-tx");
 
 		tx.setCreatedBy("admin");
 		tx.setTransactionType("PO");
 		trService.createTransaction(tx);
 		String message = "Purchase was successfully updated.";
 
-		ModelAndView mav = new ModelAndView("redirect:/products/orders/all");
+		ModelAndView mav = new ModelAndView("redirect:/admin/orders/all");
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
@@ -123,7 +123,7 @@ public class AdminOrderController {
 		}
 		tx.setTransactionLines(tlList);
 
-		ModelAndView mav = new ModelAndView("products/orders/new-po-tx", "tx", tx);
+		ModelAndView mav = new ModelAndView("admin/orders/new-po-tx", "tx", tx);
 		return mav;
 	}
 
