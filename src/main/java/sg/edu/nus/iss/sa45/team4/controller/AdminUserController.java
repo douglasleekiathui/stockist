@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import sg.edu.nus.iss.sa45.team4.exception.SupplierNotFound;
+import sg.edu.nus.iss.sa45.team4.exception.UserNotFound;
 import sg.edu.nus.iss.sa45.team4.model.User;
 import sg.edu.nus.iss.sa45.team4.services.UserService;
 import sg.edu.nus.iss.sa45.team4.validator.AdminUserValidator;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 public class AdminUserController {
 	
 	@Autowired
@@ -41,7 +43,7 @@ public class AdminUserController {
 		User user = new User();
 		ModelAndView mv=new ModelAndView("user-new","users",user);
 		mv.addObject("user", user);
-		mv.setViewName("user-new");
+		mv.setViewName("admin/users/user-new");
 		return mv;
 	}
 	
@@ -50,13 +52,13 @@ public class AdminUserController {
 			final RedirectAttributes redirectAttributes)
 	{
 		if(result.hasErrors()) {
-			ModelAndView mv=new ModelAndView("user-new");
+			ModelAndView mv=new ModelAndView("admin/users/user-new");
 			return mv;
 		}
 		ModelAndView mv=new ModelAndView();
 		String message="New user "+ users.getUser()+"was successfully created.";
 		uService.createUser(users);
-		mv.setViewName("redirect:/users/list");
+		mv.setViewName("redirect:/admin/users/list");
 		redirectAttributes.addFlashAttribute("message",message);
 		return mv;
 	}
@@ -66,8 +68,9 @@ public class AdminUserController {
 	public ModelAndView userListPage() {
 		ModelAndView mv = new ModelAndView("user-list");
 		List<User> uList = uService.findAllUsers();
+		
+		mv.setViewName("/admin/users/user-list");
 		mv.addObject("uList", uList);
-		mv.setViewName("user-list");
 		return mv;
 	}
 
@@ -78,18 +81,18 @@ public class AdminUserController {
 		mv.addObject("user", user);
 		ArrayList<User> uList = uService.findAllUsers();
 		mv.addObject("uList", uList);
-		mv.setViewName("user-edit");
+		mv.setViewName("/admin/users/user-edit");
 		return mv;
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public ModelAndView editUser(@ModelAttribute @Valid User users, BindingResult result, @PathVariable String id,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes) throws UserNotFound {
 
 		if (result.hasErrors())
 			return new ModelAndView("user-edit");
 
-		ModelAndView mav = new ModelAndView("redirect:/users/list");
+		ModelAndView mav = new ModelAndView("redirect:/admin/users/list");
 		String message = "User was successfully updated.";
 
 		uService.changeUser(users);
@@ -101,7 +104,7 @@ public class AdminUserController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteUser(@PathVariable String id, final RedirectAttributes redirectAttributes) {
 
-		ModelAndView mv = new ModelAndView("redirect:/users/list");
+		ModelAndView mv = new ModelAndView("redirect:/admin/users/list");
 		User user = uService.findUser(id);
 		uService.removeUser(user);
 		String message = "The user " + user.getUser() + " was successfully deleted.";

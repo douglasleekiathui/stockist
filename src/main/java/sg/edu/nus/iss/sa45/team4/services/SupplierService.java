@@ -11,10 +11,10 @@ public interface SupplierService {
 
 	Supplier findSupplier(String ceid);
 
-	Supplier createSupplier(Supplier Supplier);
+	Supplier createSupplier(Supplier supplier);
 
-	Supplier changeSupplier(Supplier Supplier);
+	Supplier changeSupplier(Supplier supplier);
 
-	void removeSupplier(Supplier Supplier);
+	void removeSupplier(Supplier supplier);
 
 }

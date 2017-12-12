@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
-import sg.edu.nus.iss.sa45.team4.repository.RunningNumberRepository;
 import sg.edu.nus.iss.sa45.team4.repository.SupplierRepository;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 
@@ -18,15 +17,14 @@ import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 public class SupplierServiceImpl implements SupplierService{
 	
 	@Resource
-	private SupplierRepository sRepository;
-	@Resource
-	private RunningNumberRepository rnRepository;
+	private SupplierRepository SupplierRepository;
+	
 
 
 	@Override
 	@Transactional
 	public ArrayList<Supplier> findAllSuppliers() {
-		ArrayList<Supplier> l = (ArrayList<Supplier>) sRepository.findAll();
+		ArrayList<Supplier> l = (ArrayList<Supplier>) SupplierRepository.findAll();
 		return l;
 	}
 
@@ -34,28 +32,28 @@ public class SupplierServiceImpl implements SupplierService{
 	@Override
 	@Transactional
 	public Supplier findSupplier(String ceid) {
-		return sRepository.findOne(ceid);
+		return SupplierRepository.findOne(ceid);
 
 	}
 
 	
 	@Override
 	@Transactional
-	public Supplier createSupplier(Supplier Supplier) {
-		return sRepository.saveAndFlush(Supplier);
+	public Supplier createSupplier(Supplier supplier) {
+		return SupplierRepository.saveAndFlush(supplier);
 	}
 
 	
 	@Override
 	@Transactional
-	public Supplier changeSupplier(Supplier Supplier) {
-		return sRepository.saveAndFlush(Supplier);
+	public Supplier changeSupplier(Supplier supplier) {
+		return SupplierRepository.saveAndFlush(supplier);
 	}
 
 	@Override
 	@Transactional
-	public void removeSupplier(Supplier Supplier) {
-		sRepository.delete(Supplier);
+	public void removeSupplier(Supplier supplier) {
+		SupplierRepository.delete(supplier);
 	}
 
 }

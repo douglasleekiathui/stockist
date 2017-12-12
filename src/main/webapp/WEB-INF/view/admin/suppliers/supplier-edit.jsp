@@ -6,7 +6,7 @@
 <h3>Edit Supplier Page</h3>
 
 <form:form method="POST" modelAttribute="supplier"
-	action="${pageContext.request.contextPath}/suppliers/edit/${suppliers.supplierNo}.html">
+	action="${pageContext.request.contextPath}/admin/suppliers/edit/${suppliers.supplierNo}.html">
 	<table>
 		<tbody>
 			<tr>

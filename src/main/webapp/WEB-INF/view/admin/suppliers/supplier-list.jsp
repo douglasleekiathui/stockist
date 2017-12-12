@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <h3>Supplier List Page</h3>
-<a href="${pageContext.request.contextPath}/suppliers/create.html">Add Supplier</a>
+<a href="${pageContext.request.contextPath}/admin/suppliers/create.html">Add Supplier</a>
 <c:if test="${fn:length(sList) gt 0}">
 	<table class="table">
 		<thead>
@@ -29,10 +29,10 @@
 					<td>${suppliers.recordStatus}</td>
 
 					<td align="center"><a
-						href="${pageContext.request.contextPath}/suppliers/edit/${suppliers.supplierNo}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/suppliers/edit/${suppliers.supplierNo}.html"><spring:message
 								code="caption.edit" /></a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/suppliers/delete/${suppliers.supplierNo}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/suppliers/delete/${suppliers.supplierNo}.html"><spring:message
 								code="caption.delete" /></a></td>
 				</tr>
 			</c:forEach>
