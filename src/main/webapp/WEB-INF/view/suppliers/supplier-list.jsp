@@ -3,17 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<h3>Supplier List page</h3>
+<h3>Supplier List Page</h3>
 <a href="${pageContext.request.contextPath}/suppliers/create.html">Add Supplier</a>
 <c:if test="${fn:length(sList) gt 0}">
-	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+	<table class="table">
 		<thead>
 			<tr class="listHeading">
-				<th><spring:message code="fieldLabel.supplier_no" /></th>
-				<th><spring:message code="fieldLabel.supplier_name" /></th>
-				<th><spring:message code="fieldLabel.supplier_contact" /></th>
-				<th><spring:message code="fieldLabel.supplier_email" /></th>
-				<th><spring:message code="fieldLabel.record_status" /></th>
+				<th><spring:message code="fieldLabel.supplier_no" scope="col" /></th>
+				<th><spring:message code="fieldLabel.supplier_name" scope="col" /></th>
+				<th><spring:message code="fieldLabel.supplier_contact" scope="col"/></th>
+				<th><spring:message code="fieldLabel.supplier_email" scope="col"/></th>
+				<th><spring:message code="fieldLabel.record_status" scope="col" /></th>
 
 				<th><spring:message code="caption.edit" /></th>
 				<th><spring:message code="caption.delete" /></th>

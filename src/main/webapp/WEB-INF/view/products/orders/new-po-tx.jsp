@@ -14,25 +14,41 @@
 <style>
 .txline{height:3em;}
 </style>
-</head>
-<body>
-
-
-
-Update Inventory Receipt/Purchase
+<div class="container">
+					<div class="row">
+						<div class="col-sm-6">
+<h3>Update Inventory Receipt/Purchase</h3>
+<table >
 <form:form method="POST" modelAttribute="tx" action="${pageContext.request.contextPath}/products/orders/new/p=${p.productNo}.html" >
-Date:<form:input type="date" class="form-control" path="transactionDate"/><form:errors path="transactionDate" cssStyle="color: red;" />
-Supplier Name: <form:input type="text" path="createdFor"/><form:errors path="createdFor" cssStyle="color: red;" />
+<tr>
+<td>Date: </td>
+<td><form:input type="date" path="transactionDate" class="form-control"/></td>
+<td><form:errors path="transactionDate" cssStyle="color: red;" /></td>
+</tr>
+<tr>
+<td>Supplier Name: </td>
+<td><form:input type="text" path="createdFor" class="form-control" /></td>
+<td><form:errors path="createdFor" cssStyle="color: red;"  /></td>
+</tr>
 <c:forEach varStatus="tl" items="${tx.transactionLines}">
-<div class="txline">
-<span class="txlineitem">Line: ${tl.index+1}</span>
-<span class="txlineitem">Part Number: <form:input type="text" path="transactionLines[${tl.index}].productNo"/></span>
-<span class="txlineitem">Posted Qty: <form:input type="text" path="transactionLines[${tl.index}].postedQty" value="${p.reorderQty}"/>
-<form:errors  path="transactionLines[${tl.index}].postedQty" cssStyle="color: red;" /></span>
-</div>
-    
+<tr>
+<td>Line:</td>
+<td><input type="text" value="${tl.index+1}" name="lineNo" class="form-control" readOnly="true"/></td>
+</tr>
+<tr>
+<td>Part Number:</td>
+<td><form:input type="text" path="transactionLines[${tl.index}].productNo" class="form-control" /></td>
+</tr>
+<tr>
+<td>Posted Qty:</td>
+<td><form:input type="text" path="transactionLines[${tl.index}].postedQty" class="form-control" value="${p.reorderQty}"/></td>
+<td><form:errors  path="transactionLines[${tl.index}].postedQty" cssStyle="color: red;" /></td> 
+<tr>
+<td><input type="submit" value="Submit" class="btn btn-primary"/></td>
+</tr>  
 </c:forEach>
-<input type="submit" value="Submit" class="btn btn-primary"/>
 </form:form>
-</body>
-</html>
+</table>
+</div>
+</div>
+</div>

@@ -42,6 +42,29 @@ action="${pageContext.request.contextPath}/products/create.html">
 				</td>
 			</tr>
 			<tr>
+			<td>Supplier</td>
+			<td>
+				<select class="custom-select" name="primarySupplier" id="primarySupplier">
+				  <option value="S0001" ${product.primarySupplier == "S0001" ? 'selected="selected"' : ''}>TOYOTA JAPAN</option>
+				  <option value="S0002" ${product.primarySupplier == "S0002" ? 'selected="selected"' : ''}>TOYOTA APAC</option>
+				  <option value="S0003" ${product.primarySupplier == "S0003" ? 'selected="selected"' : ''}>NISSAN JAPAN</option>
+				  <option value="S0004" ${product.primarySupplier == "S0004" ? 'selected="selected"' : ''}>NISSAN APAC</option>
+				  <option value="S0005" ${product.primarySupplier == "S0005" ? 'selected="selected"' : ''}>MAZDA JAPAN</option>
+				  <option value="S0006" ${product.primarySupplier == "S0006" ? 'selected="selected"' : ''}>MAZDA APAC</option>
+				  <option value="S0007" ${product.primarySupplier == "S0007" ? 'selected="selected"' : ''}>HONDA HEADQUARTERS</option>
+				  <option value="S0008" ${product.primarySupplier == "S0008" ? 'selected="selected"' : ''}>HONDA ASIA PACIFIC PTE LTD</option>
+				  <option value="S0009" ${product.primarySupplier == "S0009" ? 'selected="selected"' : ''}>HAPPY AND OILY</option>
+				  <option value="S0010" ${product.primarySupplier == "S0010" ? 'selected="selected"' : ''}>HOUSE OF MIRRORS</option>
+				  <option value="S0011" ${product.primarySupplier == "S0011" ? 'selected="selected"' : ''}>MITSUBISHI</option>
+				  <option value="S0012" ${product.primarySupplier == "S0012" ? 'selected="selected"' : ''}>LEXUS</option>
+				  <option value="S0013" ${product.primarySupplier == "S0013" ? 'selected="selected"' : ''}>SUBARU</option>
+				  <option value="S0014" ${product.primarySupplier == "S0014" ? 'selected="selected"' : ''}>SUZUKI</option>
+				  <option value="S0015" ${product.primarySupplier == "S0015" ? 'selected="selected"' : ''}>HINO</option>
+				  <option value="S0016" ${product.primarySupplier == "S0016" ? 'selected="selected"' : ''}>DAIHATSU</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
 				<td>Shelf Location</td>
 				<td>
 				<select class="custom-select" name="shelfLocation" id="shelfLocation">
