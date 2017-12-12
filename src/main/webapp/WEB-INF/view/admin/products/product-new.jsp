@@ -12,21 +12,21 @@ action="${pageContext.request.contextPath}/admin/products/product-new.html">
 	<table>
 		<tbody>
 		<tr>
-				<td>Product No</td>
+				<td><spring:message code="fieldLabel.product_no"></spring:message></td>
 				<td><form:input path="productNo" readOnly="true" class="form-control"/></td>
 			</tr>
 			<tr>
-				<td>Description</td>
+				<td><spring:message code="fieldLabel.product_description"></spring:message></td>
 				<td><form:input path="productDescription" class="form-control" /></td>
 				<td><form:errors path="productDescription" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Dimensions</td>
+				<td><spring:message code="fieldLabel.product_dimension"></spring:message></td>
 				<td><form:input path="dimension" class="form-control" /></td>
 				<td><form:errors path="dimension" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Manufacturer</td>
+				<td><spring:message code="fieldLabel.product_manufacturer"></spring:message></td>
 				<td>
 				<select class="custom-select" name="manufacturer" id="manufacturer">
 				  <option value="NA" ${product.manufacturer == "NA" ? 'selected="selected"' : ''}>NA</option>
@@ -43,7 +43,7 @@ action="${pageContext.request.contextPath}/admin/products/product-new.html">
 				</td>
 			</tr>
 			<tr>
-			<td>Supplier</td>
+			<td><spring:message code="fieldLabel.product_supplier"></spring:message></td>
 			<td>
 				<select class="custom-select" name="primarySupplier" id="primarySupplier">
 				  <option value="S0001" ${product.primarySupplier == "S0001" ? 'selected="selected"' : ''}>TOYOTA JAPAN</option>
@@ -66,7 +66,7 @@ action="${pageContext.request.contextPath}/admin/products/product-new.html">
 				</td>
 			</tr>
 			<tr>
-				<td>Shelf Location</td>
+				<td><spring:message code="fieldLabel.product_shelf_location"></spring:message></td>
 				<td>
 				<select class="custom-select" name="shelfLocation" id="shelfLocation">
 				  <option value="ONSITE" ${product.shelfLocation == "ONSITE" ? 'selected="selected"' : ''}>ONSITE</option>
@@ -75,7 +75,7 @@ action="${pageContext.request.contextPath}/admin/products/product-new.html">
 				</td>
 			</tr>
 			<tr>
-				<td>Price</td>
+				<td><spring:message code="fieldLabel.product_price"></spring:message></td>
 				<td><form:input path="price" class="form-control"/></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>

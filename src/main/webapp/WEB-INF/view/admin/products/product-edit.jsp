@@ -13,22 +13,22 @@ action="${pageContext.request.contextPath}/admin/products/product-edit/${product
 	<table>
 		<tbody>
 		<tr>
-				<td>Product No</td>
+				<td><spring:message code="fieldLabel.product_no"></spring:message></td>
 				<td><form:input path="productNo" readOnly="true"  class="form-control"/></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Description</td>
+				<td><spring:message code="fieldLabel.product_description"></spring:message></td>
 				<td><form:input path="productDescription"  class="form-control" /></td>
 				<td><form:errors path="productDescription" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Dimensions</td>
+				<td><spring:message code="fieldLabel.product_dimension"></spring:message></td>
 				<td><form:input path="dimension"  class="form-control"/></td>
 				<td><form:errors path="dimension" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Manufacturer</td>
+				<td><spring:message code="fieldLabel.product_manufacturer"></spring:message></td>
 				<td>
 				<select class="custom-select" name="manufacturer" id="manufacturer">
 				  <option value="NA" ${product.manufacturer == "NA" ? 'selected="selected"' : ''}>NA</option>
@@ -45,7 +45,7 @@ action="${pageContext.request.contextPath}/admin/products/product-edit/${product
 				</td>
 			</tr>
 			<tr>
-				<td>Shelf Location</td>
+				<td><spring:message code="fieldLabel.product_shelf_location"></spring:message></td>
 				<td>
 				<select class="custom-select" name="shelfLocation" id="shelfLocation">
 				  <option value="ONSITE" ${product.shelfLocation == "ONSITE" ? 'selected="selected"' : ''}>ONSITE</option>
@@ -54,26 +54,26 @@ action="${pageContext.request.contextPath}/admin/products/product-edit/${product
 				</td>
 			</tr>
 			<tr>
-				<td>Onhand Quantity</td>
+				<td><spring:message code="fieldLabel.product_onhand_qty"></spring:message></td>
 				<td><form:input path="onhandQty"  class="form-control"  type="number"  required="required"/></td>
 				<td><form:errors path="onhandQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Minimum Quantity</td>
+				<td><spring:message code="fieldLabel.product_min_qty"></spring:message></td>
 				<td><form:input path="minQty"  class="form-control"  type="number" required="required"/></td>
 				<td><form:errors path="minQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Primary Supplier</td>
+				<td><spring:message code="fieldLabel.product_primary_supplier"></spring:message></td>
 				<td><form:input path="primarySupplier" readOnly="true" class="form-control"  /></td>
 			</tr>
 			<tr>
-				<td>Reorder Quantity</td>
+				<td><spring:message code="fieldLabel.product_reorder_qty"></spring:message></td>
 				<td><form:input path="reorderQty"  class="form-control" type="number"  required="required" /></td>
 				<td><form:errors path="reorderQty" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
-				<td>Price</td>
+				<td><spring:message code="fieldLabel.product_price"></spring:message></td>
 				<td><form:input path="price"  class="form-control" /></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>
 			</tr>

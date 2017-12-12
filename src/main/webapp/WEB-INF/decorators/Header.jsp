@@ -22,40 +22,40 @@
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto">
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">Product</a>
+			aria-expanded="false"><spring:message code="header.product"></spring:message></a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="<c:url value="/admin/products/product-list.html"/>">View</a> 
-				<a class="dropdown-item" href="<c:url value="/admin/products/product-new.html"/>">New</a>
+				<a class="dropdown-item" href="<c:url value="/admin/products/product-list.html"/>"><spring:message code="header.view"></spring:message></a> 
+				<a class="dropdown-item" href="<c:url value="/admin/products/product-new.html"/>"><spring:message code="header.new"></spring:message></a>
 			</div>
 		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">Supplier</a>
+			aria-expanded="false"><spring:message code="header.supplier"></spring:message></a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="<c:url value="/admin/suppliers/list.html"/>">View</a>
-				<a class="dropdown-item" href="<c:url value="/admin/suppliers/create.html"/>">New</a>
+				<a class="dropdown-item" href="<c:url value="/admin/suppliers/list.html"/>"><spring:message code="header.view"></spring:message></a>
+				<a class="dropdown-item" href="<c:url value="/admin/suppliers/create.html"/>"><spring:message code="header.new"></spring:message></a>
 			</div>
 		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">User</a>
+			aria-expanded="false"><spring:message code="header.user"></spring:message></a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="<c:url value="/admin/users/list.html"/>">View</a> 
-				<a class="dropdown-item" href="<c:url value="/admin/users/create.html"/>">New</a> 
+				<a class="dropdown-item" href="<c:url value="/admin/users/list.html"/>"><spring:message code="header.view"></spring:message></a> 
+				<a class="dropdown-item" href="<c:url value="/admin/users/create.html"/>"><spring:message code="header.new"></spring:message></a> 
 			</div>
 		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">Reports</a>
+			aria-expanded="false"><spring:message code="header.order"></spring:message></a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					href="<c:url value="/admin/users/user-list.html"/>">View</a>
+ 					href="<c:url value="/admin/orders/all.html"/>"><spring:message code="header.view"></spring:message></a> 
 			</div>
 		</li>
 		<li class="nav-item"><a class="nav-link"
-			href="<c:url value="/mechanic/list.html"/>">Mechanic</a>
+			href="<c:url value="/mechanic/list.html"/>"><spring:message code="header.mechanic"></spring:message></a>
 		</li>
-        <li class="nav-item"><a class="nav-link" href="<c:url value="/logout.html"/>">Logout</a></li>
+        <li class="nav-item" style="position:absolute;right:10;"><a class="nav-link" href="<c:url value="/logout.html"/>"><spring:message code="header.logout"></spring:message></a></li>
         </ul>
       </div>
     </nav>

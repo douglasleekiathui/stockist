@@ -18,7 +18,7 @@
 <link type="text/css" rel="stylesheet"
 	href="path_to/simplePagination.css" />-->
 
-<title>Reorder Inventory</title>
+<title>Reorder Inventory </title>
 <style>
 .displaytable{font-family: Arial,"San Serif";margin:auto;padding-top:1em;paddiing-bottom:1em;}
 .displaytable th{background-color:lightblue;font-weight:normal;padding: 5px 0 0 5px;}
@@ -34,7 +34,7 @@
 <div class="container">
             <div class="row">
                 <div class="col-sm">
-<h5><spring:message code="title.reorderReport" /></h5>
+<h5><spring:message code="title.reorderReport" /><a href="<c:url value="/admin/orders/suppliers.html"/>"> (<spring:message code="title.viewBySupplier"></spring:message>)</a></h5>
 <br/>
 <table>
 <c:if test="${s != null}">

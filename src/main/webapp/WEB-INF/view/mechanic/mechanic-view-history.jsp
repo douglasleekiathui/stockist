@@ -7,7 +7,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm">
-<h5>View History Page</h5>
+<h5><spring:message code="title.ViewHistoryPage"></spring:message></h5>
 
 			<div>
 				<a href="${pageContext.request.contextPath}/mechanic/list.html">Go Back</a>
@@ -18,11 +18,11 @@
 	<table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 	 <thead>
 	 <tr class="listHeading">
-		<th>Transaction No.</th>
-		<th>Date</th>
-	    <th>Type</th>
-		<th>Created By</th>
-		<th>Created For</th>
+		<th><spring:message code="fieldLabel.transaction_no"></spring:message></th>
+		<th><spring:message code="fieldLabel.transaction_date"></spring:message></th>
+	    <th><spring:message code="fieldLabel.transaction_type"></spring:message></th>
+		<th><spring:message code="fieldLabel.transaction_created_by"></spring:message></th>
+		<th><spring:message code="fieldLabel.transaction_created_for"></spring:message></th>
 	</tr>
  </thead>
   <tbody>

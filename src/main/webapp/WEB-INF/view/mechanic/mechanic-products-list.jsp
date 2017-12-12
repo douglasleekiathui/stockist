@@ -18,8 +18,8 @@
 								<table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
 									<tr class="listHeading">
-										<th>Product No.</th>
-										<th>Product Description</th>
+										<th><spring:message code="fieldLabel.product_no"></spring:message></th>
+										<th><spring:message code="fieldLabel.product_description"></spring:message></th>
 										<th>Qty</th>
 										<th> </th>
 										<th> </th>
@@ -33,10 +33,10 @@
 											<td>${products.productDescription}</td>
 											<td>${products.onhandQty}</td>
 											<td>
-												<a href="${pageContext.request.contextPath}/mechanic/mechanic-product-detail/${products.productNo}.html">View Details</a>
+												<a href="${pageContext.request.contextPath}/mechanic/mechanic-product-detail/${products.productNo}.html"><spring:message code="caption.view_details"></spring:message></a>
 											</td>
 											<td>
-												<a href="${pageContext.request.contextPath}/mechanic/recordUsage/p=${products.productNo}.html">Record Usage</a>
+												<a href="${pageContext.request.contextPath}/mechanic/recordUsage/p=${products.productNo}.html"><spring:message code="caption.record_usage"></spring:message></a>
 											</td>
 										</tr>
 									</c:forEach>

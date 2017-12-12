@@ -80,16 +80,6 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getReorderProductByPage(){
          List<Product> products = ProductRepository.findReorderProducts();
          return products;
-//     		/*
-//          * Manual implementation of pagination, because spring's page is too troublesome
-//          * Takes in pageNumber and sizePerPage, returns the subList
-//          * also does custom sorting which follows ReorderProductComparator
-//          */
-//         Collections.sort(products, new ReorderProductComparator());
-//         int pageNo=Integer.parseInt(page);
-//         int from = Math.max(0,pageNo*sizePerPage);
-//         int to = Math.min(products.size(),(pageNo+1)*sizePerPage);
-//         return products.subList(from,to);
     }
     
     

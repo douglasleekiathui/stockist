@@ -22,7 +22,7 @@ import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 
 
 @Controller
-@RequestMapping("/reports")
+@RequestMapping("/admin/reports")
 public class ReportController {
 
 	

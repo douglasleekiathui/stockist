@@ -8,7 +8,7 @@
             <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-<h5>Record product usage</h5>
+<h5><spring:message code="title.RecordProductUsage"></spring:message></h5>
 <form:form method="POST" modelAttribute="tx" action="${pageContext.request.contextPath}/mechanic/recordUsage/p=${p.productNo}.html" >
 <table>
 <tbody>

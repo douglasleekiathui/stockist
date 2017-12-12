@@ -126,5 +126,13 @@ public class AdminOrderController {
 		ModelAndView mav = new ModelAndView("/admin/orders/order-new", "tx", tx);
 		return mav;
 	}
+	
+	
+	// view reorder report by supplier
+	@RequestMapping(value = "/suppliers", method = RequestMethod.GET)
+	public ModelAndView viewAllSuppliers() {
+		List<Supplier> sList = sService.findAllSuppliers();
+		return new ModelAndView("/admin/orders/order-view-supplier","sList",sList);
+	}
 
 }

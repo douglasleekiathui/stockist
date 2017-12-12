@@ -100,15 +100,15 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/login**","/").permitAll()
+				.antMatchers("/login**").permitAll()
+				.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('ROLE_ADMIN')")
 				.anyRequest().authenticated()
-				.antMatchers("/admin/**").access("hasAuthority('ADMIN')")
 				.and().formLogin()
 //				.loginPage("/login")
 				.defaultSuccessUrl("/home")
 				.failureUrl("/login?error")
 				.and().logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true)
-				.and().exceptionHandling().accessDeniedPage("/403");
+				.and().exceptionHandling().accessDeniedPage("/denied");
 	}
 	
 

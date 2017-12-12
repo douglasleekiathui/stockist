@@ -12,15 +12,15 @@
 	    			<div class="input-group">
 	     				 <form:input path="searchText" type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." />
 					<select class="custom-select" name="searchType" id="searchType">
-					  <option value="productNo" ${productSearch.searchType == "productNo" ? 'selected="selected"' : ''}>Part Number</option>
-					  <option value="productDescription" ${productSearch.searchType == "productDescription" ? 'selected="selected"' : ''}>Product Description</option>
-					  <option value="manufacturer" ${productSearch.searchType == "manufacturer" ? 'selected="selected"' : ''}>Manufacturer</option>
-					  <option value="shelfLocation" ${productSearch.searchType == "shelfLocation" ? 'selected="selected"' : ''}>Shelf Location</option>
+					  <option value="productNo" ${productSearch.searchType == "productNo" ? 'selected="selected"' : ''}><spring:message code="fieldLabel.product_no"></spring:message></option>
+					  <option value="productDescription" ${productSearch.searchType == "productDescription" ? 'selected="selected"' : ''}><spring:message code="fieldLabel.product_description"></spring:message></option>
+					  <option value="manufacturer" ${productSearch.searchType == "manufacturer" ? 'selected="selected"' : ''}><spring:message code="fieldLabel.product_manufacturer"></spring:message></option>
+					  <option value="shelfLocation" ${productSearch.searchType == "shelfLocation" ? 'selected="selected"' : ''}><spring:message code="fieldLabel.product_shelf_location"></spring:message></option>
 					</select>
 					<br/>
 	      					<span class="input-group-btn">
-	        					<button class="btn btn-primary" type="submit">Search By</button>
-	        					<a href ="${pageContext.request.contextPath}/admin/products/product-list" type="reset" class="btn btn-primary">Reset</a>
+	        					<button class="btn btn-primary" type="submit"><spring:message code="caption.search_by"></spring:message></button>
+	        					<a href ="${pageContext.request.contextPath}/admin/products/product-list" type="reset" class="btn btn-primary"><spring:message code="caption.reset"></spring:message></a>
 	      					</span>
 	    			</div>
 				</form:form>
@@ -29,14 +29,14 @@
                         <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Part Number</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Dimensions</th>
-                                        <th scope="col">Manufacturer</th>
-                                        <th scope="col">Shelf Location</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
+                                        <th scope="col"><spring:message code="fieldLabel.product_no"></spring:message></th>
+                                        <th scope="col"><spring:message code="fieldLabel.product_description"></spring:message></th>
+                                        <th scope="col"><spring:message code="fieldLabel.product_dimension"></spring:message></th>
+                                        <th scope="col"><spring:message code="fieldLabel.product_manufacturer"></spring:message></th>
+                                        <th scope="col"><spring:message code="fieldLabel.product_shelf_location"></spring:message></th>
+                                        <th scope="col"><spring:message code="fieldLabel.product_price"></spring:message></th>
+                                        <th scope="col"><spring:message code="caption.edit"></spring:message></th>
+                                        <th scope="col"><spring:message code="caption.delete"></spring:message></th>
             							
                                     </tr>
                                 </thead>
@@ -49,10 +49,10 @@
                                         <td>${p.shelfLocation}</td>
                                         <td>${p.price}</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/admin/products/product-edit/${p.productNo}.html">Edit</a>
+                                            <a href="${pageContext.request.contextPath}/admin/products/product-edit/${p.productNo}.html"><spring:message code="caption.edit"></spring:message></a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/admin/products/delete/${p.productNo}.html">Delete</a>
+                                            <a href="${pageContext.request.contextPath}/admin/products/delete/${p.productNo}.html"><spring:message code="caption.delete"></spring:message></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
