@@ -6,7 +6,7 @@
 
 <h3>New User page</h3>
 <form:form method="POST" commandName="user"
-	action="${pageContext.request.contextPath}/users/create.html">
+	action="${pageContext.request.contextPath}/admin/users/create.html">
 	<form:errors/>
 	<table>
 		<tbody>
@@ -15,23 +15,14 @@
 				<td><form:input path="user" class="form-control" /></td>
 				<td><form:errors path="user" cssStyle="color: red;" /></td>
 			</tr>
-			
 			<tr>
 				<td><spring:message code="fieldLabel.password" /></td>
-<<<<<<< HEAD
 				<td><form:input path="password" class="form-control" /></td>
-=======
-				<td><form:input path="password" class="form-control"/></td>
->>>>>>> branch 'master' of https://github.com/douglasleekiathui/stockist
 				<td><form:errors path="password" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
 				<td><spring:message code="fieldLabel.user_role" /></td>
-<<<<<<< HEAD
 				<td><form:input path="userRole" class="form-control"/></td>
-=======
-				<td><form:input path="userRole" class="form-control" /></td>
->>>>>>> branch 'master' of https://github.com/douglasleekiathui/stockist
 				<td><form:errors path="userRole" cssStyle="color: red;" /></td>
 			</tr>
 

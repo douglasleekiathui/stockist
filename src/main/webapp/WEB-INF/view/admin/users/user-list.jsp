@@ -15,7 +15,7 @@
 <h3>User List page</h3>
 <div class="container">
                 <div class="col xs-12">
-<a href="${pageContext.request.contextPath}/users/create.html">Add User</a>
+<a href="${pageContext.request.contextPath}/admin/users/create.html">Add User</a>
 <c:if test="${fn:length(uList) gt 0}">
 	<table class="table">
 		<thead>
@@ -37,10 +37,10 @@
 					<td>${users.userRole}</td>
 
 					<td><a
-						href="${pageContext.request.contextPath}/users/edit/${users.user}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/users/edit/${users.user}.html"><spring:message
 								code="caption.edit" /></a></td>
 					<td><a
-						href="${pageContext.request.contextPath}/users/delete/${users.user}.html"><spring:message
+						href="${pageContext.request.contextPath}/admin/users/delete/${users.user}.html"><spring:message
 								code="caption.delete" /></a></td>
 				</tr>
 			</c:forEach>
