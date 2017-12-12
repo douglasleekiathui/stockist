@@ -20,17 +20,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
-import sg.edu.nus.iss.sa45.team4.validator.SupplierValidator;
+import sg.edu.nus.iss.sa45.team4.validator.AdminSupplierValidator;
 
 @Controller
 @RequestMapping("/suppliers")
-public class SupplierController {
+public class AdminSupplierController {
 
 	@Autowired
 	private SupplierService sService;
 	
 	@Autowired
-	private SupplierValidator sValidator;
+	private AdminSupplierValidator sValidator;
 
 	@InitBinder("supplier")
 	private void initSupplierBinder(WebDataBinder binder) {
@@ -42,7 +42,6 @@ public class SupplierController {
 	{
 		Supplier supplier = new Supplier();
 		ModelAndView mv=new ModelAndView("supplier-new","suppliers",supplier);
-    	//ArrayList<User> uList= uService.findAllUsers();
 		mv.addObject("supplier", supplier);
 		mv.setViewName("/suppliers/supplier-new");
 		return mv;
@@ -54,11 +53,7 @@ public class SupplierController {
 	{
 		if(result.hasErrors()) {
 			ModelAndView mv=new ModelAndView("supplier-new");
-			//mv.addObject("user",users);
-			//mv.setViewName("users/create");
 			return mv;
-			
-			//return new ModelAndView("user-new");
 		}
 		ModelAndView mv=new ModelAndView();
 		String message="New Supplier "+ supplier.getSupplierName()+"was successfully created.";
@@ -115,7 +110,6 @@ public class SupplierController {
 		Supplier supplier = sService.findSupplier(id);
 		supplier.setRecordStatus(0);
 		sService.changeSupplier(supplier);
-		//sService.removeSupplier(supplier);;
 		String message = "The supplier" + supplier.getSupplierName() + " was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);

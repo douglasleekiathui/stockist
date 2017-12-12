@@ -19,22 +19,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sg.edu.nus.iss.sa45.team4.model.Product;
 import sg.edu.nus.iss.sa45.team4.model.ProductSearch;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
-import sg.edu.nus.iss.sa45.team4.validator.ProductValidator;
+import sg.edu.nus.iss.sa45.team4.validator.AdminProductValidator;
 
 
 
 @Controller
 @RequestMapping("/products")
-public class ProductController {
+public class AdminProductController {
 	
 	@Autowired
 	private ProductService pService;
-	
-	//@Autowired
-	//private SupplierService sService;
-
 	@Autowired
-	private ProductValidator pValidator;
+	private AdminProductValidator pValidator;
 	
 	@InitBinder("product")
 	private void initProductBinder(WebDataBinder binder) {
@@ -171,8 +167,6 @@ public class ProductController {
 	public ModelAndView editProductPage(@PathVariable String productNo) {
 		ModelAndView mav = new ModelAndView("edit");
 		Product product = pService.findProduct(productNo);
-		//ArrayList<Supplier> supplier = sService.findAllSuppliers();
-		//mav.addObject("supplier", supplier);
 		mav.addObject("product", product);
 		mav.setViewName("/products/edit");
 		return mav;
@@ -203,7 +197,6 @@ public class ProductController {
 		Product product = pService.findProduct(productNo);
 		product.setRecord_status(0);
 		pService.changeProduct(product);
-//		pService.removeProduct(product);
 		String message = "The product " + product.getProductNo() + " was successfully deleted.";
 
 		redirectAttributes.addFlashAttribute("message", message);

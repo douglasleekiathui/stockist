@@ -29,19 +29,19 @@ public class ReportController {
 	@Autowired
 	private ApplicationContext appContext;
 	@Autowired
-	private ProductService productService;
+	private ProductService pService;
 	@Autowired
-	private SupplierService supplierService;
+	private SupplierService sService;
 
 	@RequestMapping(value = "/reorder/{supplier}", method = RequestMethod.GET)
 	public ModelAndView viewReOrders(@PathVariable("supplier") String supplier) {
-		Supplier s = supplierService.findSupplier(supplier);
+		Supplier s = sService.findSupplier(supplier);
 		JasperReportsPdfView view = new JasperReportsPdfView();
 		view.setUrl("classpath:reports/reorder.jrxml");
 		view.setApplicationContext(appContext);
 
 		Map<String, Object> params = new HashMap<>();
-		List<Product> datasource=productService.findProductsBySupplier(s);
+		List<Product> datasource=pService.findProductsBySupplier(s);
 		Collections.sort(datasource,new ReorderComparatorImpl());
 		params.put("datasource", datasource);
 		params.put("s", s);

@@ -53,6 +53,7 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 	@Resource(name="")
 	private Environment env;
 	
+	
 	//Tiles
 	 @Bean 
 	 public UrlBasedViewResolver tilesViewResolver(){
@@ -83,6 +84,7 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 //	return filter;
 //	} 
 	
+	 
 	// security-----------------------------------------------------
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

@@ -19,17 +19,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.edu.nus.iss.sa45.team4.model.User;
 import sg.edu.nus.iss.sa45.team4.services.UserService;
-import sg.edu.nus.iss.sa45.team4.validator.UserValidator;
+import sg.edu.nus.iss.sa45.team4.validator.AdminUserValidator;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class AdminUserController {
 	
 	@Autowired
 	private UserService uService;
 
 	@Autowired
-	private UserValidator uValidator;
+	private AdminUserValidator uValidator;
 
 	@InitBinder("user")
 	private void initUserBinder(WebDataBinder binder) {
@@ -40,7 +40,6 @@ public class UserController {
 	{
 		User user = new User();
 		ModelAndView mv=new ModelAndView("user-new","users",user);
-    	//ArrayList<User> uList= uService.findAllUsers();
 		mv.addObject("user", user);
 		mv.setViewName("user-new");
 		return mv;
@@ -52,11 +51,7 @@ public class UserController {
 	{
 		if(result.hasErrors()) {
 			ModelAndView mv=new ModelAndView("user-new");
-			//mv.addObject("user",users);
-			//mv.setViewName("users/create");
 			return mv;
-			
-			//return new ModelAndView("user-new");
 		}
 		ModelAndView mv=new ModelAndView();
 		String message="New user "+ users.getUser()+"was successfully created.";

@@ -21,7 +21,7 @@ import sg.edu.nus.iss.sa45.team4.services.UserService;
 
 @Controller
 @RequestMapping(value = "/")
-public class CommonController {
+public class SecurityController {
 	
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String logic(Model model) {

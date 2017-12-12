@@ -7,7 +7,7 @@ import org.springframework.validation.Validator;
 
 import sg.edu.nus.iss.sa45.team4.model.User;
 	@Component
-	public class UserValidator implements Validator {
+	public class AdminUserValidator implements Validator {
 		@Override
 		public boolean supports(Class<?> clazz) {
 			return User.class.isAssignableFrom(clazz);
@@ -15,11 +15,7 @@ import sg.edu.nus.iss.sa45.team4.model.User;
 
 		@Override
 		public void validate(Object target, Errors errors) {
-			User u = (User) target;
-//			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user", "","error.users.user.empty");
-//			ValidationUtils.rejectIfEmpty(errors, "password", "","error.users.password.empty");
-//			ValidationUtils.rejectIfEmpty(errors, "user_role", "","error.users.user_role.empty");
-			
+			User u = (User) target;			
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user","User Name Cannot be Empty");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password","Password Name Cannot be Empty");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userRole","User Role Cannot be Empty");

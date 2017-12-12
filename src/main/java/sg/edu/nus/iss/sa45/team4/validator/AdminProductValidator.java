@@ -10,7 +10,7 @@ import sg.edu.nus.iss.sa45.team4.model.Transaction;
 import sg.edu.nus.iss.sa45.team4.model.TransactionLine;
 
 @Component
-public class ProductValidator implements Validator {
+public class AdminProductValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {

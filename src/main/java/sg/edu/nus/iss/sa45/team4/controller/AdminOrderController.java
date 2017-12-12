@@ -25,23 +25,23 @@ import sg.edu.nus.iss.sa45.team4.model.TransactionLine;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 import sg.edu.nus.iss.sa45.team4.services.TransactionService;
-import sg.edu.nus.iss.sa45.team4.validator.ProductOrderValidator;
+import sg.edu.nus.iss.sa45.team4.validator.AdminOrderValidator;
 
 @Controller
 @RequestMapping("/products/orders")
-public class ProductOrderController {
+public class AdminOrderController {
 
 	// business logic
 	@Autowired
-	private ProductService productService;
+	private ProductService pService;
 	@Autowired
-	private SupplierService supplierService;
+	private SupplierService sService;
 	@Autowired
-	private TransactionService transactionService;
+	private TransactionService trService;
 
 	// validator
 	@Autowired
-	private ProductOrderValidator productOrderValidator;
+	private AdminOrderValidator productOrderValidator;
 
 	@InitBinder(value = "tx")
 	private void initProductOrderBinder(WebDataBinder webDataBinder) {
@@ -54,10 +54,10 @@ public class ProductOrderController {
 		ModelAndView mav = new ModelAndView("products/orders/view");
 		List<Product> products;
 		if (supplier.equalsIgnoreCase("all")) {
-			products = productService.getReorderProductByPage();
+			products = pService.getReorderProductByPage();
 		} else {
-			Supplier s = supplierService.findSupplier(supplier);
-			products = productService.findProductsBySupplier(s);
+			Supplier s = sService.findSupplier(supplier);
+			products = pService.findProductsBySupplier(s);
 			mav.addObject("s", s);
 		}
 		mav.addObject("pList", products);
@@ -72,7 +72,7 @@ public class ProductOrderController {
 	// create new purchase order for individual product
 	@RequestMapping(value = "/new/p={productNo}", method = RequestMethod.GET)
 	public ModelAndView addNewOrder(@PathVariable("productNo") String productNo) {
-		Product p = productService.findProduct(productNo);
+		Product p = pService.findProduct(productNo);
 		Transaction tx = new Transaction();
 		TransactionLine tl = new TransactionLine();
 		List<TransactionLine> tlList = new ArrayList<TransactionLine>();
@@ -97,7 +97,7 @@ public class ProductOrderController {
 
 		tx.setCreatedBy("admin");
 		tx.setTransactionType("PO");
-		transactionService.createTransaction(tx);
+		trService.createTransaction(tx);
 		String message = "Purchase was successfully updated.";
 
 		ModelAndView mav = new ModelAndView("redirect:/products/orders/all");
@@ -108,8 +108,8 @@ public class ProductOrderController {
 	// create new purchase order for supplier
 	@RequestMapping(value = "/new/s={supplier}", method = RequestMethod.GET)
 	public ModelAndView viewSupplier(@PathVariable String supplier) {
-		Supplier s = supplierService.findSupplier(supplier);
-		List<Product> products = productService.findProductsBySupplier(s);
+		Supplier s = sService.findSupplier(supplier);
+		List<Product> products = pService.findProductsBySupplier(s);
 		Transaction tx = new Transaction();
 		tx.setTransactionDate(Calendar.getInstance().getTime());
 		tx.setCreatedFor(s.getSupplierName());
