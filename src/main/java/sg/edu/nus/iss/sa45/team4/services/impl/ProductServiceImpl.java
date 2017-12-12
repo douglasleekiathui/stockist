@@ -3,6 +3,7 @@ package sg.edu.nus.iss.sa45.team4.services.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,8 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.nus.iss.sa45.team4.model.Product;
+import sg.edu.nus.iss.sa45.team4.model.RunningNumber;
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
+import sg.edu.nus.iss.sa45.team4.model.Transaction;
+import sg.edu.nus.iss.sa45.team4.model.TransactionLine;
 import sg.edu.nus.iss.sa45.team4.repository.ProductRepository;
+import sg.edu.nus.iss.sa45.team4.repository.RunningNumberRepository;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
 
 
@@ -22,7 +27,8 @@ public class ProductServiceImpl implements ProductService{
 	@Resource
 	private ProductRepository ProductRepository;
 	
-
+	@Resource
+	private RunningNumberRepository runningNumberRepository;
 
 	@Override
 	@Transactional
@@ -43,6 +49,16 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	@Transactional
 	public Product createProduct(Product Product) {
+		
+		Product p= Product;
+		RunningNumber rn= runningNumberRepository.findOne("products");
+		int pNo =rn.getValue()+1;
+		rn.setValue(pNo);
+		runningNumberRepository.saveAndFlush(rn);
+		
+		String pNumber="P"+String.format("%04d", pNo);
+		p.setProductNo(pNumber);
+		
 		return ProductRepository.saveAndFlush(Product);
 	}
 

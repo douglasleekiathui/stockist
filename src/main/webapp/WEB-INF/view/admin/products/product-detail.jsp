@@ -22,7 +22,7 @@
                 <div class="col-sm-6">
 <h5>Detail Product Page</h5>
 	<table class="table">
-	<tr><td> Product No: <td>${product.productNo}</td></td></tr> 
+	<tr><td> Product No: <td>${product.productNo}</td></tr> 
 	<tr><td>Product Description: <td>  ${product.productDescription}</td></tr>
 	<tr><td>Dimension: <td> ${product.dimension}</td></tr>
 	<tr><td>Manufacturer: <td>  ${product.manufacturer}</td></tr>
@@ -33,10 +33,12 @@
 	<tr><td>Price: <td> ${product.price} </td></tr>
 	<tr>
 	<td>
-	<a href ="${pageContext.request.contextPath}/admin/products/view" type="back" class="btn btn-primary">Back</a>
+	<a href ="${pageContext.request.contextPath}/mechanic//product-list" type="back" class="btn btn-primary">Back</a>
 	</td>
 	</tr>
 	</table>
 	</div>
 	</div>
 	</div>
+	</body>
+	

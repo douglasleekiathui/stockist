@@ -41,9 +41,10 @@ public class AdminSupplierController {
 	{
 		Supplier supplier = new Supplier();
 		ModelAndView mv=new ModelAndView("supplier-new","suppliers",supplier);
-
+		
 		mv.addObject("supplier", supplier);
 		mv.setViewName("admin/suppliers/supplier-new");
+		sService.createSupplier(supplier);
 		return mv;
 	}
 	
