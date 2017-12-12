@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import sg.edu.nus.iss.sa45.team4.exception.SupplierNotFound;
+import sg.edu.nus.iss.sa45.team4.exception.SupplierNotFoundException;
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 import sg.edu.nus.iss.sa45.team4.validator.AdminSupplierValidator;
@@ -84,7 +84,7 @@ public class AdminSupplierController {
 
 	@RequestMapping(value = "/edit/{supplierNo}", method = RequestMethod.POST)
 	public ModelAndView editSupplier(@ModelAttribute @Valid Supplier supplier, BindingResult result, @PathVariable String supplierNo,
-			final RedirectAttributes redirectAttributes) throws SupplierNotFound {
+			final RedirectAttributes redirectAttributes) throws SupplierNotFoundException {
 
 		if (result.hasErrors())
 			return new ModelAndView("admin/suppliers/supplier-edit");
@@ -99,7 +99,7 @@ public class AdminSupplierController {
 
 	@RequestMapping(value = "/delete/{supplierNo}", method = RequestMethod.GET)
 	public ModelAndView deleteSupplier(@PathVariable String supplierNo, final RedirectAttributes redirectAttributes)
-			throws SupplierNotFound {
+			throws SupplierNotFoundException {
 
 		ModelAndView mv = new ModelAndView("redirect:/admin/suppliers/list");
 		Supplier supplier = sService.findSupplier(supplierNo);

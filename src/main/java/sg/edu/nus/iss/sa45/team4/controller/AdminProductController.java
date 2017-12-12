@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import sg.edu.nus.iss.sa45.team4.exception.ProductNotFoundException;
 import sg.edu.nus.iss.sa45.team4.model.Product;
 import sg.edu.nus.iss.sa45.team4.model.ProductSearch;
 import sg.edu.nus.iss.sa45.team4.services.ProductService;
@@ -175,7 +176,8 @@ public class AdminProductController {
 	
 	@RequestMapping(value = "/product-edit/{productNo}", method = RequestMethod.POST)
 	public ModelAndView editProductPage(@ModelAttribute @Valid Product product,  BindingResult result,
-			@PathVariable String productNo, final RedirectAttributes redirectAttributes) {
+			@PathVariable String productNo, final RedirectAttributes redirectAttributes)
+			throws ProductNotFoundException{
         if (result.hasErrors()) {
         	ModelAndView mav = new ModelAndView("product-edit");
     		mav.addObject("product", product);
