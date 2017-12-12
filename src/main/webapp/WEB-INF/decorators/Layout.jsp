@@ -1,14 +1,13 @@
-<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
-	prefix="dec"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
 <%@include file="Header.jsp"%>
 <c:url value="/css/simple.css" var="ss"/>
 <link rel="STYLESHEET" type="text/css"
 	href="${ss}" />
-<dec:head />
+<sitemesh:write property='head'/>
 </head>
 <body >
 	<table style="width: 100%">
@@ -24,7 +23,7 @@
 					<h3>
 						<spring:message code="${bodyTitle}" />
 					</h3>
-					<dec:body />
+					<sitemesh:write property='body'/>
 				</div>
 			</td>
 		</tr>

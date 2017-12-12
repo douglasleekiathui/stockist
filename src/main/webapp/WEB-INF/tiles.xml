@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- default template -->
+	<definition name="defaulttemplate" template="/WEB-INF/decorators/tileslayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/decorators/Header.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<!-- all mappings -->
+	<definition name="/products/view" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/view.jsp"></put-attribute>
+	</definition>
+	<definition name="/products/create" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/create.jsp"></put-attribute>
+	</definition>
+	<definition name="/products/detail" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/detail.jsp"></put-attribute>
+	</definition>
+	<definition name="/products/edit" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/edit.jsp"></put-attribute>
+	</definition>
+	<definition name="/products/*" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/{1}.jsp"></put-attribute>
+	</definition>
+
+
+	<definition name="/products/orders/new" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/orders/new-po-tx.jsp"></put-attribute>
+	</definition>
+	<definition name="/products/orders" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/products/orders/view.jsp"></put-attribute>
+	</definition>
+
+
+	<definition name="/suppliers/list" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/suppliers/supplier-list.jsp" />
+	</definition>
+	<definition name="/suppliers/create" extends="defaulttemplate">
+		<put-attribute name="body" value="/WEB-INF/view/suppliers/supplier-new.jsp" />
+	</definition>
+	<definition name="/*" extends="defaulttemplate">
+		<put-attribute name="body" value="/{1}" />
+	</definition>
+	<definition name="/*" extends="defaulttemplate">
+		<put-attribute name="body" value="/{1}" />
+	</definition>
+
+
+
+</tiles-definitions>

@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
@@ -22,7 +23,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -31,24 +34,78 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 
 @SpringBootApplication(scanBasePackages = "sg.edu.nus.iss.sa45.team4")
 @EnableWebMvc
-@EnableWebSecurity
-@Import({WebSecurityConfig.class})
 @EnableTransactionManagement
 @PropertySource({"classpath:application.properties"})
 @EnableJpaRepositories("sg.edu.nus.iss.sa45.team4.repository")
-public class StockistApplication {
+public class StockistApplication extends WebSecurityConfigurerAdapter {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StockistApplication.class, args);
 	}
 
-
 	@Resource(name="")
 	private Environment env;
+	
+	//Tiles
+	 @Bean 
+	 public UrlBasedViewResolver tilesViewResolver(){
+
+	    UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
+	    tilesViewResolver.setViewClass(TilesView.class);
+	    //tilesViewResolver.setPrefix("/WEB-INF/view/");
+	    //tilesViewResolver.setSuffix(".jsp");
+	    return tilesViewResolver;
+	}
+	 @Bean
+	 public TilesConfigurer tilesConfigurer(){ 
+
+	    String[] definitions = new String[] {"/WEB-INF/tiles.xml"};
+
+	    TilesConfigurer tilesConfigurer = new TilesConfigurer();
+	    tilesConfigurer.setDefinitions(definitions);
+	    return tilesConfigurer;
+
+	 }
+	
+	
+	//Sitemesh-----------------------------------------------uncomment to test
+//	@Bean
+//	public FilterRegistrationBean siteMeshFilter() {
+//	FilterRegistrationBean filter = new FilterRegistrationBean();
+//	filter.setFilter(new MySiteMeshFilter());
+//	return filter;
+//	} 
+	
+	// security-----------------------------------------------------
+	@Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+		.jdbcAuthentication()
+		.dataSource(dataSource()).usersByUsernameQuery(
+				"select user, password, true from users where user=?")
+		.authoritiesByUsernameQuery(
+				"select user, 'ROLE_'+user_role from users where user=?");
+    }
+
+	@Override 
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.anyRequest().authenticated()
+				.antMatchers("/login**","/").permitAll()
+				.antMatchers("/products/create","/suppliers/**","/users/**").access("hasAuthority('ADMIN')")
+				.and().formLogin()
+				.failureUrl("/login?error")
+				.defaultSuccessUrl("/products/view.jsp")
+				.and().logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true)
+				.and().exceptionHandling().accessDeniedPage("/403");
+	}
 	
 
 	//property files-----------------------------------------------------------
@@ -57,7 +114,7 @@ public class StockistApplication {
 	      return new PropertySourcesPlaceholderConfigurer();
 	}
 
-	//for i18n-----------------------------------------------------------------
+	//for i18n------------------------------------------------------------------
 	//choose sessionlocaleresolver for non-persistence, compared to cookielocaleresolver
 	@Bean
 	public SessionLocaleResolver localeResolver() {

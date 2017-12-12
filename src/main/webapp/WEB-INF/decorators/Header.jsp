@@ -28,3 +28,4 @@
             <p>Stockist Inventory Managemnt System</p>
         </div>
     </div>
+    <a href="<c:url value="/logout" />">Logout</a>
