@@ -24,7 +24,7 @@ import sg.edu.nus.iss.sa45.team4.validator.AdminProductValidator;
 
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/admin/products")
 public class AdminProductController {
 	
 	@Autowired
@@ -159,7 +159,7 @@ public class AdminProductController {
 		ModelAndView mav = new ModelAndView("detail");
 		Product product = pService.findProduct(productNo);
 		mav.addObject("product", product);
-		mav.setViewName("/products/detail");
+		mav.setViewName("/admin/products/detail");
 		return mav;
 	}
 	
