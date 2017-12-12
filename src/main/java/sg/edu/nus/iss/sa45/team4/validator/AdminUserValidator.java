@@ -16,8 +16,8 @@ import sg.edu.nus.iss.sa45.team4.model.User;
 		@Override
 		public void validate(Object target, Errors errors) {
 			User u = (User) target;			
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user","User Name Cannot be Empty");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password","Password Name Cannot be Empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user","","User Name Cannot be Empty");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password","","Password Name Cannot be Empty");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userRole","User Role Cannot be Empty");
 			System.out.println(u.toString());
 		}

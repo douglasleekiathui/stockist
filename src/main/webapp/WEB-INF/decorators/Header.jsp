@@ -41,26 +41,24 @@
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 			aria-expanded="false">Product</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="<c:url value="/admin/products/view.html"/>">View</a> 
-				<a class="dropdown-item" href="<c:url value="/admin/products/new.html"/>">New</a>
+				<a class="dropdown-item" href="<c:url value="/admin/products/product-list.html"/>">View</a> 
+				<a class="dropdown-item" href="<c:url value="/admin/products/product-new.html"/>">New</a>
 			</div>
 		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 			aria-expanded="false">Supplier</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="<c:url value="/admin/suppliers/supplier-list.html"/>">View</a>
-				<a class="dropdown-item" href="<c:url value="/admin/suppliers/supplier-new.html"/>">New</a>
+				<a class="dropdown-item" href="<c:url value="/admin/suppliers/list.html"/>">View</a>
+				<a class="dropdown-item" href="<c:url value="/admin/suppliers/create.html"/>">New</a>
 			</div>
 		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 			aria-expanded="false">User</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="<c:url value="/admin/users/user-list.html"/>">View</a> 
-				<a class="dropdown-item" href="<c:url value="/admin/users/user-new.html"/>">New</a> 
-				<a class="dropdown-item" href="#">Something else here</a> 
-				<a class="dropdown-item" href="#">Separated link</a>
+				<a class="dropdown-item" href="<c:url value="/admin/users/list.html"/>">View</a> 
+				<a class="dropdown-item" href="<c:url value="/admin/users/create.html"/>">New</a> 
 			</div>
 		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
@@ -72,7 +70,7 @@
 			</div>
 		</li>
 		<li class="nav-item"><a class="nav-link"
-			href="<c:url value="/mechanic/mechanic-products-list.html"/>">Mechanic</a>
+			href="<c:url value="/mechanic/list.html"/>">Mechanic</a>
 		</li>
 
 	</ul>

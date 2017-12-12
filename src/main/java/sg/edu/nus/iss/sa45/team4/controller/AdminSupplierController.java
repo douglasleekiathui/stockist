@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.edu.nus.iss.sa45.team4.exception.SupplierNotFoundException;
+import sg.edu.nus.iss.sa45.team4.model.Product;
 import sg.edu.nus.iss.sa45.team4.model.Supplier;
 import sg.edu.nus.iss.sa45.team4.services.SupplierService;
 import sg.edu.nus.iss.sa45.team4.validator.AdminSupplierValidator;
@@ -41,10 +42,9 @@ public class AdminSupplierController {
 	{
 		Supplier supplier = new Supplier();
 		ModelAndView mv=new ModelAndView("supplier-new","suppliers",supplier);
-		
-		mv.addObject("supplier", supplier);
 		mv.setViewName("admin/suppliers/supplier-new");
 		sService.createSupplier(supplier);
+		mv.addObject("supplier", supplier);
 		return mv;
 	}
 	
@@ -59,6 +59,7 @@ public class AdminSupplierController {
 		ModelAndView mv=new ModelAndView();
 		String message="New Supplier "+ supplier.getSupplierName()+"was successfully created.";
 		sService.createSupplier(supplier);
+		supplier.setRecordStatus(1);
 		mv.setViewName("redirect:/admin/suppliers/list");
 	    redirectAttributes.addFlashAttribute("message",message);
 		return mv;
@@ -69,6 +70,7 @@ public class AdminSupplierController {
 	public ModelAndView supplierListPage() {
 		ModelAndView mv = new ModelAndView("supplier-list");
 		ArrayList<Supplier> sList = sService.findAllSuppliers();
+		sList.removeIf((Supplier p)-> p.getRecordStatus() == 0);
 		mv.setViewName("/admin/suppliers/supplier-list");
 		mv.addObject("sList", sList);
 		return mv;

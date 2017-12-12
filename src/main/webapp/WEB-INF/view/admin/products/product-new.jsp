@@ -90,15 +90,6 @@ action="${pageContext.request.contextPath}/admin/products/product-new.html">
 				</td>
 			</tr>
 			<tr>
-			<td>Record Status</td>
-			<td>
-				<select class="custom-select" name="record_status" id="record_status">
-				  <option value="0" ${product.record_status == "0" ? 'selected="selected"' : ''}>0</option>
-				  <option value="1" ${product.record_status == "1" ? 'selected="selected"' : ''}>1</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
 				<td>Price</td>
 				<td><form:input path="price" class="form-control"/></td>
 				<td><form:errors path="price" cssStyle="color: red;" /></td>
