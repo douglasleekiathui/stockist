@@ -35,10 +35,10 @@
 											<td>${products.productDescription}</td>
 											<td>${products.onhandQty}</td>
 											<td>
-												<a href="${pageContext.request.contextPath}/products/detail/${products.productNo}.html">View Details</a>
+												<a href="${pageContext.request.contextPath}/admin/products/detail/${products.productNo}.html">View Details</a>
 											</td>
 											<td>
-												<a href="${pageContext.request.contextPath}/mechanic/recordUsage/${products.productNo}.html">Record Usage</a>
+												<a href="${pageContext.request.contextPath}/mechanic/recordUsage/p=${products.productNo}.html">Record Usage</a>
 											</td>
 										</tr>
 									</c:forEach>

@@ -25,7 +25,7 @@ public class SecurityController {
 	
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String logic(Model model) {
-		return "redirect:/login";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -34,7 +34,12 @@ public class SecurityController {
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return "redirect:/login";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	    return "redirect:/login";
+	}
+	
+	@RequestMapping(value="/denied", method = RequestMethod.GET)
+	public String denyPage () {
+	    return "denied";
 	}
 	
 //	

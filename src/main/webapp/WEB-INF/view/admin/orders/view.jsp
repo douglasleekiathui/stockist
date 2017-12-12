@@ -39,6 +39,7 @@
 <table>
 <c:if test="${s != null}">
 <a href=<c:url value="/admin/orders/new/s=${s.supplierNo}"/>>Update new receipt or purchase</a>
+
 <tr>
 <td><spring:message code="supplierNo" />: </td>
 <td>${s.supplierNo} </td>
@@ -48,6 +49,7 @@
 <td> ${s.supplierName} </td>
 <td></td>
 </tr>
+
 </c:if>
 <br/>
 <display:table class="table" id="p" name="pList" requestURI="" pagesize="10" export="true" >
@@ -57,7 +59,11 @@
 	<a href="<c:url value="/admin/orders/${p.primarySupplier.supplierNo}.html" />">
 	<c:out value="${p.primarySupplier.supplierName}" /></a></display:column>
 </c:if>
+
+
+
     <display:column class="numeric text-justify" titleKey="displaytag.productNo" sortable="true"><a href = "<c:url value = "/admin/orders/new/p=${p.productNo}.html"/>">
+
     <c:out value="${p.productNo}"/></a></display:column>
     <display:column class="numeric text-justify" property="price" titleKey="displaytag.price" sortable="true"/>
     <display:column class="numeric text-justify" property="onhandQty" titleKey="displaytag.onhandQty"  sortable="true"/>
