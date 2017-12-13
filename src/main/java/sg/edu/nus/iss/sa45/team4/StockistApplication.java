@@ -104,7 +104,6 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('ROLE_ADMIN')")
 				.anyRequest().authenticated()
 				.and().formLogin()
-//				.loginPage("/login")
 				.defaultSuccessUrl("/home")
 				.failureUrl("/login?error")
 				.and().logout().logoutSuccessUrl("/login?logout").invalidateHttpSession(true)
@@ -123,7 +122,7 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 	@Bean
 	public SessionLocaleResolver localeResolver() {
 	    SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-	    sessionLocaleResolver.setDefaultLocale(Locale.US);
+	    //sessionLocaleResolver.setDefaultLocale(Locale.US);
 	    return sessionLocaleResolver;
 	}
 	//intercept request and look for locale

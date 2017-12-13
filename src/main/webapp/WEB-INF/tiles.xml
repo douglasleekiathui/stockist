@@ -30,7 +30,7 @@
 		<put-attribute name="body" value="/WEB-INF/view/mechanic/{1}.jsp"></put-attribute>
 	</definition>
 	<definition name="/admin/orders/*" extends="defaulttemplate">
-		<put-attribute name="body" value="/WEB-INF/view//admin/orders/{1}.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/view/admin/orders/{1}.jsp"></put-attribute>
 	</definition>
 	<definition name="/admin/*" extends="defaulttemplate">
 		<put-attribute name="body" value="/{1}"></put-attribute>

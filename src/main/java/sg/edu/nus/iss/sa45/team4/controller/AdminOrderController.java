@@ -1,12 +1,15 @@
 package sg.edu.nus.iss.sa45.team4.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -45,6 +48,9 @@ public class AdminOrderController {
 
 	@InitBinder(value = "tx")
 	private void initProductOrderBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 		webDataBinder.setValidator(productOrderValidator);
 	}
 
@@ -93,7 +99,7 @@ public class AdminOrderController {
 			final RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors())
-			return new ModelAndView("/admin/orders/new-po-tx");
+			return new ModelAndView("/admin/orders/order-new");
 
 		tx.setCreatedBy("admin");
 		tx.setTransactionType("PO");
@@ -132,7 +138,7 @@ public class AdminOrderController {
 	@RequestMapping(value = "/suppliers", method = RequestMethod.GET)
 	public ModelAndView viewAllSuppliers() {
 		List<Supplier> sList = sService.findAllSuppliers();
-		return new ModelAndView("/admin/orders/order-view-supplier","sList",sList);
+		return new ModelAndView("admin/orders/order-view-supplier","sList",sList);
 	}
 
 }
