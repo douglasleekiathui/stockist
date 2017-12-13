@@ -48,7 +48,7 @@ PRIMARY KEY (`transaction_no`));
 CREATE TABLE `stockist4`.`users` (
 `user` VARCHAR(16) NOT NULL,
 `password` VARCHAR(255) NULL,
-`user_role` VARCHAR(8) NULL,
+`user_role` VARCHAR(13) NULL,
   PRIMARY KEY (`user`));
 
 
@@ -87,12 +87,12 @@ FOREIGN KEY (`primary_supplier`)
 REFERENCES `stockist4`.`suppliers` (`supplier_no`);
 
 INSERT INTO `stockist4`.`users` VALUES 
-('admin','admin','ADMIN'),
-('admin1','admin1','ADMIN'),
-('mech1','mech1','MECHANIC'),
-('mech2','mech2','MECHANIC'),
-('mech3','mech3','MECHANIC'),
-('mech4','mech4','MECHANIC');
+('admin','admin','ROLE_ADMIN'),
+('admin1','admin1','ROLE_ADMIN'),
+('mech1','mech1','ROLE_MECHANIC'),
+('mech2','mech2','ROLE_MECHANIC'),
+('mech3','mech3','ROLE_MECHANIC'),
+('mech4','mech4','ROLE_MECHANIC');
 
 
 INSERT INTO `stockist4`.`suppliers` (supplier_no,supplier_name,supplier_contact,supplier_email,record_status) VALUES 

@@ -93,7 +93,7 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 		.dataSource(dataSource()).usersByUsernameQuery(
 				"select user, password, true from users where user=?")
 		.authoritiesByUsernameQuery(
-				"select user, 'ROLE_'+user_role from users where user=?");
+				"select user, user_role from users where user=?");
     }
 	
 			// the / in front of the urls is necessary
