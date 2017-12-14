@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 	<!--banner-->
@@ -18,9 +18,10 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto">
+        
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 			aria-expanded="false"><spring:message code="header.product"></spring:message></a>
 			<div class="dropdown-menu">
@@ -52,6 +53,10 @@
  					href="<c:url value="/admin/orders/all.html"/>"><spring:message code="header.view"></spring:message></a> 
 			</div>
 		</li>
+		
+		</sec:authorize>
+		
+		
 		<li class="nav-item"><a class="nav-link"
 			href="<c:url value="/mechanic/list.html"/>"><spring:message code="header.mechanic"></spring:message></a>
 		</li>

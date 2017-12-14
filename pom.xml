@@ -32,6 +32,12 @@
 
 
 	<dependencies>
+		<!-- security tag lib -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
 		<!-- tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>

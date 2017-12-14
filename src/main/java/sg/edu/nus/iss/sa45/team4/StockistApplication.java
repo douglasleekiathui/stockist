@@ -101,7 +101,7 @@ public class StockistApplication extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/login**").permitAll()
-				.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/admin/**").access("hasRole('ADMIN')")
 				.anyRequest().authenticated()
 				.and().formLogin()
 				.defaultSuccessUrl("/home")
