@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
+
 	<!--banner-->
 	<div class="jumbotron mb-0">
 		<div class="container text-center">
